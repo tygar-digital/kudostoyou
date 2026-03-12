@@ -1,0 +1,81 @@
+---
+/**
+ * Film-strip style photo section — editorial horizontal strip
+ * with film grain and scale-up hover for tactile feel.
+ */
+import { coffeeBean, sparkle } from './Sketches.astro'
+---
+
+<section class="relative overflow-hidden bg-brand-bg py-6 sm:py-10">
+  <!-- Accent sketch -->
+  <div class="absolute left-[3%] top-[15%] w-5 opacity-10 rotate-12" data-parallax="-0.02" set:html={sparkle} />
+  <div class="absolute right-[5%] bottom-[10%] w-6 opacity-[0.08] -rotate-12 hidden sm:block" data-parallax="-0.03" set:html={coffeeBean} />
+
+  <div class="reveal relative z-10 mx-auto flex max-w-7xl gap-4 overflow-x-auto px-6 pb-4 sm:gap-6 scrollbar-hide">
+    <!-- Photo 1: Aufsteller -->
+    <div class="photo-grain shrink-0 overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl hover:scale-[1.03]">
+      <img
+        src="/images/aufsteller-logo.jpg"
+        alt="kudos to you Aufsteller mit Herzlogo im Abendlicht"
+        class="h-52 w-40 object-cover sm:h-64 sm:w-48 lg:h-80 lg:w-60"
+        loading="lazy"
+        width="480"
+        height="640"
+      />
+    </div>
+    <!-- Photo 2: Croissants -->
+    <div class="photo-grain shrink-0 overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl hover:scale-[1.03] sm:mt-4">
+      <img
+        src="/images/croissants-latte.jpg"
+        alt="Pistachio Croissant und Latte Art auf Holztisch"
+        class="h-52 w-40 object-cover sm:h-64 sm:w-48 lg:h-80 lg:w-60"
+        loading="lazy"
+        width="480"
+        height="640"
+      />
+    </div>
+    <!-- Photo 3: Barista -->
+    <div class="photo-grain shrink-0 overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl hover:scale-[1.03]">
+      <img
+        src="/images/barista-cycling.jpg"
+        alt="Barista bei der Arbeit mit Rennrad an der Decke"
+        class="h-52 w-40 object-cover sm:h-64 sm:w-48 lg:h-80 lg:w-60"
+        loading="lazy"
+        width="480"
+        height="640"
+      />
+    </div>
+    <!-- Photo 4: Außenansicht -->
+    <div class="photo-grain shrink-0 overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl hover:scale-[1.03] sm:mt-4">
+      <img
+        src="/images/aussenansicht.jpg"
+        alt="Außenansicht des kudos to you Cafés mit Markise"
+        class="h-52 w-40 object-cover sm:h-64 sm:w-48 lg:h-80 lg:w-60"
+        loading="lazy"
+        width="480"
+        height="640"
+      />
+    </div>
+    <!-- Repeat for infinite feel on desktop -->
+    <div class="photo-grain shrink-0 overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl hover:scale-[1.03] hidden lg:block">
+      <img
+        src="/images/croissants-latte.jpg"
+        alt="Latte Art und Gebäck"
+        class="h-80 w-60 object-cover object-bottom"
+        loading="lazy"
+        width="480"
+        height="640"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>

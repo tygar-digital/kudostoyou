@@ -1,0 +1,91 @@
+---
+/**
+ * SectionDivider — Hand-drawn SVG illustrations between sections.
+ * Each variant tells a visual micro-story connecting sections.
+ * The SVG paths animate on scroll (stroke-dasharray draw effect).
+ */
+interface Props {
+  variant: 'beans-trail' | 'bike-path' | 'steam-swirl' | 'beans-to-cup'
+  flip?: boolean
+}
+
+const { variant, flip = false } = Astro.props
+---
+
+<div class:list={["section-divider reveal relative z-10 -my-4 flex justify-center overflow-visible py-2", flip && "scale-x-[-1]"]}>
+  {variant === 'beans-trail' && (
+    <svg class="draw-on-scroll h-16 w-64 sm:h-20 sm:w-80" viewBox="0 0 320 80" fill="none">
+      <!-- Scattered coffee beans connected by a flowing line -->
+      <path class="draw-path" d="M0 40 C30 20, 60 50, 90 35 C120 20, 140 55, 170 40 C200 25, 230 50, 260 38 C290 26, 310 42, 320 40" stroke="#6B8F71" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
+      <!-- Bean 1 -->
+      <g transform="translate(75 28) rotate(-15)">
+        <ellipse cx="0" cy="0" rx="5" ry="8" stroke="#6B8F71" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M-2 -5 C0 -1, 0 1, -2 5" stroke="#6B8F71" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
+      </g>
+      <!-- Bean 2 -->
+      <g transform="translate(160 45) rotate(10)">
+        <ellipse cx="0" cy="0" rx="4.5" ry="7" stroke="#6B8F71" stroke-width="1" fill="none" opacity="0.35"/>
+        <path d="M-1.5 -4.5 C0.5 -1, 0.5 1, -1.5 4.5" stroke="#6B8F71" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
+      </g>
+      <!-- Bean 3 -->
+      <g transform="translate(250 32) rotate(-25)">
+        <ellipse cx="0" cy="0" rx="5" ry="7.5" stroke="#6B8F71" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M-2 -5 C0 -1, 0 1, -2 5" stroke="#6B8F71" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
+      </g>
+    </svg>
+  )}
+
+  {variant === 'bike-path' && (
+    <svg class="draw-on-scroll h-16 w-64 sm:h-20 sm:w-80" viewBox="0 0 320 80" fill="none">
+      <!-- Winding path with a tiny bike silhouette -->
+      <path class="draw-path" d="M0 50 C40 20, 80 60, 120 35 C160 10, 200 55, 240 30 C280 5, 300 45, 320 35" stroke="#6B8F71" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 6" opacity="0.25"/>
+      <!-- Tiny bike wheel 1 -->
+      <circle cx="160" cy="32" r="7" stroke="#6B8F71" stroke-width="1" fill="none" opacity="0.3"/>
+      <circle cx="160" cy="32" r="1.5" fill="#6B8F71" opacity="0.2"/>
+      <!-- Tiny bike wheel 2 -->
+      <circle cx="178" cy="32" r="7" stroke="#6B8F71" stroke-width="1" fill="none" opacity="0.3"/>
+      <circle cx="178" cy="32" r="1.5" fill="#6B8F71" opacity="0.2"/>
+      <!-- Bike frame -->
+      <path d="M160 32 L169 20 L178 32 M169 20 L160 32 M169 20 L164 32" stroke="#6B8F71" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
+    </svg>
+  )}
+
+  {variant === 'steam-swirl' && (
+    <svg class="draw-on-scroll h-16 w-64 sm:h-20 sm:w-80" viewBox="0 0 320 80" fill="none">
+      <!-- Rising steam curves from a cup -->
+      <path class="draw-path" d="M140 70 C140 55, 145 45, 140 35 C135 25, 145 15, 140 5" stroke="#6B8F71" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+      <path class="draw-path" d="M160 75 C162 55, 155 40, 160 25 C165 10, 158 5, 160 0" stroke="#6B8F71" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
+      <path class="draw-path" d="M180 70 C178 50, 185 40, 180 30 C175 20, 182 12, 180 5" stroke="#6B8F71" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+      <!-- Small cup silhouette -->
+      <path d="M145 72 L148 80 L172 80 L175 72 Z" stroke="#6B8F71" stroke-width="1" fill="none" opacity="0.3"/>
+      <path d="M175 74 C180 74, 182 77, 175 78" stroke="#6B8F71" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.25"/>
+    </svg>
+  )}
+
+  {variant === 'beans-to-cup' && (
+    <svg class="draw-on-scroll h-16 w-64 sm:h-20 sm:w-80" viewBox="0 0 320 80" fill="none">
+      <!-- Trail of beans leading to a cup -->
+      <path class="draw-path" d="M20 40 C60 25, 100 50, 140 35 C180 20, 220 45, 260 35" stroke="#6B8F71" stroke-width="1" stroke-linecap="round" opacity="0.2"/>
+      <!-- Scattered sparkles -->
+      <g opacity="0.25">
+        <path d="M50 30 L50 26 M48 28 L52 28" stroke="#6B8F71" stroke-width="1" stroke-linecap="round"/>
+        <path d="M120 50 L120 46 M118 48 L122 48" stroke="#6B8F71" stroke-width="1" stroke-linecap="round"/>
+        <path d="M200 28 L200 24 M198 26 L202 26" stroke="#6B8F71" stroke-width="1" stroke-linecap="round"/>
+      </g>
+      <!-- Mini latte art heart -->
+      <path d="M270 35 C270 30, 275 28, 278 32 C281 28, 286 30, 286 35 C286 40, 278 46, 278 46 C278 46, 270 40, 270 35Z" stroke="#6B8F71" stroke-width="1" fill="none" opacity="0.3"/>
+    </svg>
+  )}
+</div>
+
+<style>
+  .draw-on-scroll .draw-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .section-divider.is-visible .draw-on-scroll .draw-path {
+    stroke-dashoffset: 0;
+  }
+</style>

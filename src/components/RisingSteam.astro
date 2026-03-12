@@ -1,0 +1,129 @@
+---
+/**
+ * RisingSteam — Coffee cup with 3 animated steam tendrils.
+ * Steam rises and pulses continuously while in viewport.
+ * Desktop: flanked by soft wavy deko lines.
+ * Placed near Contact section as warm closing accent.
+ */
+---
+
+<div class="rising-steam-container flex items-center justify-center gap-4 lg:gap-6 px-6 lg:px-12 pb-6 lg:pb-8 pointer-events-none steam-inactive" aria-hidden="true">
+
+  <!-- Left deko — soft wave (desktop only) -->
+  <div class="hidden lg:flex items-center gap-3 flex-1">
+    <div class="flex-1 h-px bg-brand-text/[0.06]"></div>
+    <svg viewBox="0 0 24 12" class="w-4 opacity-[0.10]"><path d="M2 6 C6 2, 10 10, 14 6 C18 2, 22 10, 22 6" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" fill="none" /></svg>
+    <div class="w-6 h-px bg-brand-text/[0.08]"></div>
+  </div>
+
+  <div class="w-20 md:w-24 lg:w-28 opacity-[0.14]">
+    <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+
+      <!-- Cup (static, always visible) -->
+      <path d="M28 128 C26 124, 94 122, 95 128 L88 182 C87 190, 33 192, 32 182 Z"
+        stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" />
+      <!-- Rim -->
+      <path d="M22 128 C20 120, 100 118, 100 128"
+        stroke="#1A1A1A" stroke-width="2.2" stroke-linecap="round" />
+      <!-- Handle -->
+      <path d="M95 138 C108 138, 110 158, 95 164"
+        stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" />
+      <!-- Sleeve line -->
+      <path d="M36 155 C35 153, 86 151, 86 155"
+        stroke="#1A1A1A" stroke-width="1" stroke-linecap="round" opacity="0.3" />
+
+      <!-- Latte art hint inside cup -->
+      <ellipse cx="60" cy="136" rx="28" ry="6" stroke="#1A1A1A" stroke-width="0.6" opacity="0.2" />
+
+      <!-- Steam tendril 1 (left) -->
+      <path class="steam steam-1"
+        d="M40 122 C38 104, 48 94, 42 74 C36 54, 48 44, 42 24"
+        stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" />
+
+      <!-- Steam tendril 2 (center, tallest) -->
+      <path class="steam steam-2"
+        d="M60 118 C62 96, 54 82, 60 58 C66 36, 56 24, 60 2"
+        stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" />
+
+      <!-- Steam tendril 3 (right) -->
+      <path class="steam steam-3"
+        d="M80 122 C82 106, 74 96, 80 78 C86 60, 76 50, 80 32"
+        stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+  </div>
+
+  <!-- Right deko — soft wave (desktop only) -->
+  <div class="hidden lg:flex items-center gap-3 flex-1">
+    <div class="w-6 h-px bg-brand-text/[0.08]"></div>
+    <svg viewBox="0 0 24 12" class="w-4 opacity-[0.10]"><path d="M2 6 C6 2, 10 10, 14 6 C18 2, 22 10, 22 6" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" fill="none" /></svg>
+    <div class="flex-1 h-px bg-brand-text/[0.06]"></div>
+  </div>
+
+</div>
+
+<style>
+  @keyframes steam-rise {
+    0% {
+      transform: translateY(0);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateY(-8px);
+      opacity: 0.25;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 0.7;
+    }
+  }
+
+  .steam {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .steam-active .steam {
+    animation: steam-rise var(--steam-dur, 4s) ease-in-out infinite;
+  }
+
+  .steam-active .steam-1 {
+    --steam-dur: 3.5s;
+    animation-delay: 0s;
+  }
+
+  .steam-active .steam-2 {
+    --steam-dur: 4.2s;
+    animation-delay: 0.8s;
+  }
+
+  .steam-active .steam-3 {
+    --steam-dur: 3.8s;
+    animation-delay: 1.5s;
+  }
+
+  .steam-inactive .steam {
+    animation: none;
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .steam {
+      animation: none !important;
+      opacity: 0.4;
+    }
+  }
+</style>
+
+<script>
+  const steamEl = document.querySelector('.rising-steam-container')
+  if (steamEl) {
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        steamEl.classList.toggle('steam-active', entry.isIntersecting)
+        steamEl.classList.toggle('steam-inactive', !entry.isIntersecting)
+      },
+      { threshold: 0.1 }
+    )
+    obs.observe(steamEl)
+  }
+</script>

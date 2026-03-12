@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+import content from '../data/content.json'
+const { brand } = content
+---
+
+<Base title={`Impressum – ${brand.name}`} description="Impressum und Angaben gemäß § 5 TMG.">
+  <Nav />
+  <main class="bg-brand-bg pt-32 pb-(--spacing-section)">
+    <div class="mx-auto max-w-3xl px-6">
+      <h1 class="font-heading text-4xl font-bold text-brand-heading sm:text-5xl">Impressum</h1>
+      <p class="mt-4 font-accent text-lg text-brand-latte">Angaben gemäß § 5 TMG</p>
+
+      <!-- Hand-drawn divider -->
+      <svg class="mt-8 h-[2px] w-full" viewBox="0 0 600 3" fill="none" preserveAspectRatio="none">
+        <path d="M0 1.5 C100 0.5, 200 2.5, 300 1 C400 -0.5, 500 2.5, 600 1.5" stroke="#3C2415" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/>
+      </svg>
+
+      <div class="mt-10 space-y-10 text-brand-text leading-relaxed">
+        <!-- HINWEIS FÜR AGENTUR -->
+        <div class="rounded-2xl border-2 border-dashed border-brand-coffee/40 bg-brand-cream/50 p-6">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-coffee">⚠ Platzhalter – vor Launch ersetzen</p>
+          <p class="mt-2 text-sm text-brand-muted">
+            Die folgenden Angaben sind Platzhalter. Bitte vor der Veröffentlichung mit den echten Daten des Kunden ersetzen.
+            Bei Unsicherheiten empfehlen wir die Beratung durch einen Rechtsanwalt oder einen Impressumsgenerator
+            (z.B. <a href="https://www.e-recht24.de/impressum-generator.html" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-brand-coffee">e-recht24.de</a>).
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-semibold text-brand-heading">Verantwortlich</h2>
+          <p class="mt-3">
+            [Vor- und Nachname des Inhabers]<br />
+            {brand.name}<br />
+            {brand.address}
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-semibold text-brand-heading">Kontakt</h2>
+          <p class="mt-3">
+            Telefon: {brand.phone}<br />
+            E-Mail: <a href={`mailto:${brand.email}`} class="underline underline-offset-2 hover:text-brand-coffee">{brand.email}</a>
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-semibold text-brand-heading">Umsatzsteuer-ID</h2>
+          <p class="mt-3">
+            Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br />
+            [USt-ID eintragen, z.B. DE123456789]
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-semibold text-brand-heading">Gewerbeanmeldung</h2>
+          <p class="mt-3">
+            Die Gewerbeanmeldung wurde durchgeführt durch: [zuständiges Ordnungsamt eintragen]
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-semibold text-brand-heading">Streitschlichtung</h2>
+          <p class="mt-3">
+            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+            <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-brand-coffee">https://ec.europa.eu/consumers/odr/</a>
+          </p>
+          <p class="mt-3">
+            Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+            Verbraucherschlichtungsstelle teilzunehmen.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-semibold text-brand-heading">Haftung für Inhalte</h2>
+          <p class="mt-3">
+            Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den
+            allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
+            verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen
+            zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-semibold text-brand-heading">Haftung für Links</h2>
+          <p class="mt-3">
+            Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.
+            Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der
+            verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+          </p>
+        </div>
+
+        <!-- Back link -->
+        <div class="pt-4">
+          <a href="/" class="inline-flex items-center gap-2 text-sm font-medium text-brand-coffee transition-colors hover:text-brand-espresso">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Zurück zur Startseite
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

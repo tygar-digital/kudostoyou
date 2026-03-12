@@ -1,0 +1,318 @@
+@import "tailwindcss";
+
+/* === Local Fonts (DSGVO-konform) === */
+@font-face {
+  font-family: "Rubik";
+  src: url("/fonts/rubik-variable-latin-ext.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("/fonts/rubik-variable-latin.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/dm-sans-variable.woff2") format("woff2");
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/dm-sans-variable-italic.woff2") format("woff2");
+  font-weight: 100 1000;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Caveat";
+  src: url("/fonts/caveat-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === Brand Theme – kudos to you · Tactile Atelier === */
+@theme {
+  --color-brand-bg: #F2EBE0;
+  --color-brand-surface: #FFFFFF;
+  --color-brand-surface-alt: #EDE8DF;
+  --color-brand-border: #D6CEBE;
+
+  --color-brand-heading: #2B1F14;
+  --color-brand-text: #3D3529;
+  --color-brand-muted: #8A7E6F;
+
+  --color-brand-sage: #8FAD74;
+  --color-brand-sage-dark: #6B8B57;
+  --color-brand-sage-light: #ECF2E4;
+
+  --color-brand-espresso: #2C1E13;
+  --color-brand-cream: #F5F0E8;
+  --color-brand-latte: #A38B7B;
+
+  --font-heading: "Rubik", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-accent: "Caveat", cursive;
+
+  --spacing-section: 8rem;
+  --spacing-section-sm: 5rem;
+}
+
+/* === Base === */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-brand-text);
+  background-color: var(--color-brand-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-brand-sage);
+  color: white;
+}
+
+/* === Scroll Reveal System === */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
+
+/* === Cup Person Hero Animation === */
+@keyframes ink-reveal {
+  from {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+.hero-mascot {
+  animation: ink-reveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-text-1 { animation: slide-up-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both; }
+.hero-text-2 { animation: slide-up-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both; }
+.hero-text-3 { animation: slide-up-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.0s both; }
+.hero-text-4 { animation: slide-up-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both; }
+.hero-text-5 { animation: slide-up-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.4s both; }
+
+/* === Sketch Invert (for dark backgrounds) === */
+.sketch-invert svg,
+.sketch-invert {
+  filter: invert(1) brightness(1.8);
+}
+
+/* === Textures === */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+.paper-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.015'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* === Sketch wobble on hover === */
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+
+.sketch-wobble:hover .sketch,
+.sketch-wobble:hover svg {
+  animation: wobble 0.4s ease-in-out;
+}
+
+/* === Photo film grain overlay === */
+.photo-grain {
+  position: relative;
+}
+
+.photo-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  border-radius: inherit;
+}
+
+/* === Magnetic Button Effect === */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === Image zoom on hover (replaces rotation) === */
+.photo-grain img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.photo-grain:hover img {
+  transform: scale(1.03);
+}
+
+/* === Headline clip-path reveal (for section headlines) === */
+@keyframes headline-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+.reveal.is-visible h2 {
+  animation: headline-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+/* === Floating Deko Drift Animations === */
+@keyframes float-drift-a {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(6px, -8px) rotate(2deg); }
+  50% { transform: translate(-3px, -14px) rotate(-1deg); }
+  75% { transform: translate(8px, -5px) rotate(3deg); }
+}
+
+@keyframes float-drift-b {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-8px, -10px) rotate(-2deg); }
+  66% { transform: translate(5px, -6px) rotate(1.5deg); }
+}
+
+@keyframes float-drift-c {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(4px, -12px) rotate(1deg); }
+  60% { transform: translate(-6px, -4px) rotate(-2deg); }
+  80% { transform: translate(3px, -9px) rotate(0.5deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-deko {
+    animation: none !important;
+  }
+}
+
+/* === Smooth scrollbar === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-brand-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-muted);
+}
+
+/* === Custom Cursor === */
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  background-color: var(--color-brand-sage);
+  z-index: 9999;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.custom-cursor-ring {
+  width: 36px;
+  height: 36px;
+  margin-left: -18px;
+  margin-top: -18px;
+  border: 1.5px solid var(--color-brand-sage);
+  z-index: 9998;
+  opacity: 0.4;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+body.cursor-hover .custom-cursor-ring {
+  transform: scale(1.5);
+  opacity: 0.2;
+}
+
+body.cursor-hover .custom-cursor-dot {
+  transform: scale(1.5);
+}
+
+body.has-custom-cursor,
+body.has-custom-cursor a,
+body.has-custom-cursor button,
+body.has-custom-cursor [role="button"] {
+  cursor: none !important;
+}

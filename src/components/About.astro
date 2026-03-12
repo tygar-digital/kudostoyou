@@ -1,0 +1,87 @@
+---
+import content from '../data/content.json'
+import { coffeeCup, bicycle, chair, sparkle, coffeeBean, sketchyHeart } from './Sketches.astro'
+const { about } = content
+
+const featureIllustrations = [coffeeCup, bicycle, chair]
+---
+
+<section id="about" class="relative overflow-hidden bg-brand-bg">
+  <div class="paper-texture absolute inset-0"></div>
+
+  <!-- Single subtle sketch accent -->
+  <div class="absolute right-[4%] top-[8%] w-7 opacity-10 rotate-12 hidden lg:block" set:html={sparkle} />
+
+  <div class="relative z-10 mx-auto max-w-7xl px-6 py-(--spacing-section)">
+    <!-- Section label -->
+    <div class="reveal flex items-center gap-4">
+      <div class="h-[2px] w-12 bg-brand-sage"></div>
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sage">
+        {about.sectionLabel}
+      </p>
+    </div>
+
+    <!-- Sticky image + scrolling text -->
+    <div class="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+      <!-- Image column — fills full height on desktop -->
+      <div class="reveal min-w-0">
+        <div class="photo-grain overflow-hidden rounded-2xl shadow-xl lg:h-full">
+          <img
+            src="/images/aufsteller-logo.webp"
+            alt="kudos to you Aufsteller im Abendlicht mit Herzlogo und Slogan"
+            class="aspect-[4/3] w-full object-cover sm:aspect-[3/4] lg:aspect-auto lg:h-full"
+            loading="lazy"
+            width="1000"
+            height="1333"
+          />
+        </div>
+        <p class="mt-4 text-center font-accent text-base text-brand-muted lg:hidden">
+          „Home of coffee and cycling culture" ↗
+        </p>
+      </div>
+
+      <!-- Scrolling text panels -->
+      <div>
+        <!-- Panel 1: Headline + intro -->
+        <div class="reveal">
+          <h2 class="font-heading text-4xl font-bold leading-tight text-brand-heading sm:text-5xl lg:text-6xl">
+            {about.headline}
+          </h2>
+          <p class="mt-8 text-lg leading-relaxed text-brand-text">
+            {about.text}
+          </p>
+          <p class="mt-4 font-accent text-xl text-brand-sage">
+            {about.text2}
+          </p>
+        </div>
+
+        <!-- Hand-drawn sage divider + heart -->
+        <div class="my-12 flex items-center gap-4">
+          <svg class="h-[2px] flex-1 opacity-20" viewBox="0 0 400 2" fill="none" preserveAspectRatio="none">
+            <path d="M0 1 C60 0.3, 120 1.8, 200 0.8 C280 -0.2, 340 1.6, 400 1" stroke="#8FAD74" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <div class="w-8 shrink-0 opacity-15 -rotate-[8deg] text-brand-sage [&_path]:!stroke-brand-sage" set:html={sketchyHeart} />
+          <svg class="h-[2px] flex-1 opacity-20" viewBox="0 0 400 2" fill="none" preserveAspectRatio="none">
+            <path d="M0 1 C60 0.3, 120 1.8, 200 0.8 C280 -0.2, 340 1.6, 400 1" stroke="#8FAD74" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Panel 2: Feature cards (stacked for sticky scroll effect) -->
+        <div class="reveal-stagger space-y-6">
+          {about.features.map((feature, i) => (
+            <div class="reveal sketch-wobble group relative overflow-hidden rounded-2xl border border-brand-border bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
+              <div class="absolute inset-x-0 top-0 h-[2px] bg-brand-sage opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+              <div class="flex items-start gap-5">
+                <div class="w-12 shrink-0 opacity-50 transition-opacity duration-300 group-hover:opacity-80" set:html={featureIllustrations[i]} />
+                <div>
+                  <h3 class="font-heading text-lg font-semibold text-brand-heading">{feature.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-brand-muted">{feature.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

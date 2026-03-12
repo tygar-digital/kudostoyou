@@ -1,0 +1,186 @@
+{
+  "_PLACEHOLDERS_VOR_LAUNCH_ERSETZEN": {
+    "hinweis": "Diese Liste zeigt alle Platzhalter, die vor dem Go-Live durch echte Kundendaten ersetzt werden müssen.",
+    "offen": [
+      "brand.email → Echte E-Mail-Adresse des Cafés eintragen",
+      "brand.phone → Echte Telefonnummer eintragen",
+      "menu.categories[*].items[*].price → Echte Preise beim Kunden erfragen",
+      "contact.hours → Echte Öffnungszeiten beim Kunden bestätigen",
+      "contact.mapEmbed → Korrekte Google Maps Embed-URL für Colmantstraße 5 generieren",
+      "instagram.posts → Echte Instagram Post-IDs eintragen (siehe postsNote)",
+      "meta.og_image → OG-Image erstellen und in /public/images/ ablegen",
+      "Impressum-Seite → Echte Inhaberdaten, USt-ID, Gewerbeanmeldung eintragen",
+      "Datenschutz-Seite → Von Rechtsanwalt oder Datenschutzbeauftragten prüfen lassen",
+      "public/logo.svg → Echtes Kunden-Logo als SVG einfügen (aktuell Platzhalter)",
+      "public/images/og-image.jpg → Open-Graph-Bild für Social Sharing (1200x630px)"
+    ]
+  },
+  "brand": {
+    "name": "kudos to you",
+    "tagline": "Coffee & Cycling Culture",
+    "email": "hello@kudostoyou.cc",
+    "phone": "+49 228 12345678",
+    "address": "Colmantstraße 5, 53115 Bonn",
+    "social": {
+      "instagram": "https://www.instagram.com/kudostoyou.cc/"
+    }
+  },
+  "meta": {
+    "title": "kudos to you – Coffee & Cycling Culture in Bonn",
+    "description": "Dein Café für Kaffeekultur und Radsport in Bonn. Specialty Coffee, Community Rides und gute Vibes an der Colmantstraße.",
+    "og_image": "/images/og-image.jpg"
+  },
+  "nav": {
+    "links": [
+      { "label": "Über uns", "href": "#about" },
+      { "label": "Menü", "href": "#menu" },
+      { "label": "Events", "href": "#events" },
+      { "label": "Galerie", "href": "#gallery" },
+      { "label": "Kontakt", "href": "#contact" }
+    ],
+    "cta": {
+      "label": "Besuche uns",
+      "href": "#contact"
+    }
+  },
+  "hero": {
+    "headline": "kudos to you",
+    "subheadline": "Coffee & Cycling Culture",
+    "description": "Dein Ort für erstklassigen Kaffee, Fahrradkultur und Community – mitten in Bonn.",
+    "cta": {
+      "label": "Entdecke unser Café",
+      "href": "#about"
+    }
+  },
+  "about": {
+    "sectionLabel": "Über uns",
+    "headline": "Wo Kaffee auf Radkultur trifft",
+    "text": "kudos to you ist mehr als ein Café. Wir sind ein Treffpunkt für alle, die guten Kaffee und das Fahrrad lieben. Ob vor der Morgenrunde, nach dem Pendeln oder einfach so – bei uns findest du Specialty Coffee, ehrliche Gespräche und eine Community, die zusammenhält.",
+    "text2": "Unser Kaffee wird sorgfältig ausgewählt und mit Leidenschaft zubereitet. Die Räder an der Wand? Die gehören hierher – genau wie du.",
+    "features": [
+      {
+        "icon": "coffee",
+        "title": "Specialty Coffee",
+        "description": "Sorgfältig geröstete Bohnen, handwerklich zubereitet."
+      },
+      {
+        "icon": "bike",
+        "title": "Cycling Culture",
+        "description": "Ein Zuhause für Radfahrer – mit Community Rides und mehr."
+      },
+      {
+        "icon": "heart",
+        "title": "Community",
+        "description": "Ein Ort der Begegnung, offen für alle."
+      }
+    ]
+  },
+  "menu": {
+    "sectionLabel": "Menü",
+    "headline": "Unser Angebot",
+    "categories": [
+      {
+        "name": "Kaffee",
+        "items": [
+          { "name": "Espresso", "price": "2,80 €", "description": "Kräftig und aromatisch" },
+          { "name": "Flat White", "price": "4,20 €", "description": "Samtiger Milchschaum, doppelter Espresso" },
+          { "name": "Cappuccino", "price": "3,80 €", "description": "Klassisch mit feinem Schaum" },
+          { "name": "Filter Coffee", "price": "3,50 €", "description": "Handgebrüht, wechselnde Röstung" },
+          { "name": "Cold Brew", "price": "4,50 €", "description": "12h kalt extrahiert, erfrischend" }
+        ]
+      },
+      {
+        "name": "Getränke",
+        "items": [
+          { "name": "Matcha Latte", "price": "4,50 €", "description": "Japanischer Matcha mit Hafermilch" },
+          { "name": "Chai Latte", "price": "4,00 €", "description": "Würzig-warm, hausgemacht" },
+          { "name": "Limonade", "price": "3,50 €", "description": "Frisch gepresst, saisonal" },
+          { "name": "Wasser (still/sprudel)", "price": "2,50 €", "description": "" }
+        ]
+      },
+      {
+        "name": "Snacks",
+        "items": [
+          { "name": "Banana Bread", "price": "3,50 €", "description": "Hausgemacht, saftig" },
+          { "name": "Granola Bowl", "price": "6,50 €", "description": "Mit saisonalem Obst und Joghurt" },
+          { "name": "Avocado Toast", "price": "7,50 €", "description": "Sauerteigbrot, Avocado, Toppings" },
+          { "name": "Cookie", "price": "2,80 €", "description": "Chocolate Chip, frisch gebacken" }
+        ]
+      }
+    ],
+    "note": "Alle Milchgetränke auch mit Hafermilch, Sojamilch oder Mandelmilch verfügbar. Preise sind Platzhalter."
+  },
+  "events": {
+    "sectionLabel": "Events & Community",
+    "headline": "Gemeinsam fahren, gemeinsam genießen",
+    "description": "Bei kudos to you geht es um mehr als Kaffee. Unsere Community Rides und Events bringen Radfahrer zusammen – egal ob Anfänger oder erfahren.",
+    "items": [
+      {
+        "title": "Sunday Community Ride",
+        "date": "Jeden Sonntag, 9:00 Uhr",
+        "description": "Entspannte Gruppenausfahrt mit anschließendem Kaffee. Alle Levels willkommen.",
+        "tag": "Wöchentlich",
+        "details": [
+          "Treffpunkt: kudos to you, Colmantstraße 5",
+          "Dauer: ca. 2 Stunden (ca. 40 km)",
+          "Keine Anmeldung nötig – einfach vorbeikommen."
+        ]
+      },
+      {
+        "title": "Gravel & Coffee",
+        "date": "Jeden 2. Samstag, 8:00 Uhr",
+        "description": "Graveltour durch das Siebengebirge mit Kaffeepause unterwegs.",
+        "tag": "Alle 2 Wochen",
+        "details": [
+          "Treffpunkt: kudos to you, Colmantstraße 5",
+          "Dauer: ca. 3–4 Stunden (ca. 60 km)",
+          "Anmeldung per Instagram-DM oder vor Ort."
+        ]
+      },
+      {
+        "title": "Bike Maintenance Workshop",
+        "date": "Einmal im Monat",
+        "description": "Lerne die Basics der Fahrradwartung – von Reifenwechsel bis Schaltung.",
+        "tag": "Monatlich",
+        "details": [
+          "Ort: kudos to you, Colmantstraße 5",
+          "Dauer: ca. 1,5 Stunden",
+          "Teilnahme kostenlos – Anmeldung per Instagram-DM."
+        ]
+      }
+    ]
+  },
+  "instagram": {
+    "sectionLabel": "Instagram",
+    "headline": "Folge unserer Reise",
+    "description": "Kaffee, Räder und Community – live auf Instagram.",
+    "handle": "kudostoyou.cc",
+    "profileUrl": "https://www.instagram.com/kudostoyou.cc/",
+    "posts": [
+      "PLACEHOLDER_POST_1",
+      "PLACEHOLDER_POST_2",
+      "PLACEHOLDER_POST_3",
+      "PLACEHOLDER_POST_4",
+      "PLACEHOLDER_POST_5",
+      "PLACEHOLDER_POST_6"
+    ],
+    "postsNote": "Post-IDs hier eintragen: Gehe auf Instagram → Post öffnen → URL kopieren → den Teil nach /p/ und vor / ist die Post-ID (z.B. aus instagram.com/p/ABC123/ wird ABC123)"
+  },
+  "contact": {
+    "sectionLabel": "Kontakt & Standort",
+    "headline": "Komm vorbei",
+    "hours": [
+      { "days": "Montag – Freitag", "time": "8:00 – 18:00 Uhr" },
+      { "days": "Samstag – Sonntag", "time": "9:00 – 17:00 Uhr" }
+    ],
+    "hoursNote": "Öffnungszeiten sind Platzhalter – bitte beim Kunden bestätigen.",
+    "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2523.5!2d7.0982!3d50.7351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sColmantstra%C3%9Fe+5%2C+53115+Bonn!5e0!3m2!1sde!2sde!4v1234567890"
+  },
+  "footer": {
+    "copyright": "© 2026 kudos to you. Alle Rechte vorbehalten.",
+    "links": [
+      { "label": "Impressum", "href": "/impressum" },
+      { "label": "Datenschutz", "href": "/datenschutz" }
+    ]
+  }
+}

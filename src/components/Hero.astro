@@ -1,0 +1,125 @@
+---
+import content from '../data/content.json'
+import { cupPerson, sparkle, coffeeBean, sketchyHeart } from './Sketches.astro'
+const { hero } = content
+---
+
+<section class="relative flex min-h-[100svh] items-center overflow-hidden bg-brand-cream" id="heroSection">
+  <!-- Paper texture + grain -->
+  <div class="paper-texture absolute inset-0"></div>
+  <div class="grain absolute inset-0"></div>
+
+  <!-- Floating sketch elements — kept minimal for calm -->
+  <div class="absolute right-[10%] top-[20%] w-8 opacity-10 -rotate-6" data-parallax="-0.08" set:html={coffeeBean} />
+  <div class="absolute right-[12%] bottom-[28%] w-14 opacity-[0.12] -rotate-6" data-parallax="-0.05" set:html={sketchyHeart} />
+  <div class="absolute left-[15%] bottom-[20%] w-6 opacity-10 rotate-45 hidden lg:block" data-parallax="-0.03" set:html={sparkle} />
+
+  <!-- Sage green glow — top right -->
+  <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-sage/[0.06] blur-3xl" data-parallax="-0.04"></div>
+  <!-- Warm glow — bottom left -->
+  <div class="absolute -left-16 bottom-0 h-48 w-48 rounded-full bg-brand-latte/[0.08] blur-3xl" data-parallax="-0.03"></div>
+
+  <div class="relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-6 pt-28 pb-32 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16 lg:pt-0 lg:pb-0">
+    <!-- Text side -->
+    <div class="order-2 lg:order-1">
+      <p class="hero-text-1 font-accent text-xl text-brand-sage sm:text-2xl">
+        Colmantstraße 5, Bonn
+      </p>
+
+      <h1 class="hero-text-2 mt-4 font-heading text-[3.2rem] font-bold leading-[0.95] tracking-tight text-brand-heading sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem]">
+        {hero.headline}
+      </h1>
+
+      <p class="hero-text-3 mt-5 text-xl font-medium text-brand-muted sm:text-2xl">
+        <span class="text-brand-sage">Coffee</span> & Cycling Culture
+      </p>
+
+      <!-- Hand-drawn sage divider -->
+      <svg class="hero-text-3 mt-6 h-[3px] w-32" viewBox="0 0 130 3" fill="none">
+        <path d="M0 2 C25 0.5, 45 2.5, 65 1 C85 -0.5, 105 2.5, 130 1" stroke="#8FAD74" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+
+      <p class="hero-text-4 mt-6 max-w-md text-base leading-relaxed text-brand-text sm:text-lg">
+        {hero.description}
+      </p>
+
+      <div class="hero-text-5 mt-8 flex flex-col gap-4 sm:flex-row">
+        <a
+          href={hero.cta.href}
+          class="group inline-flex h-13 items-center gap-2 rounded-full bg-brand-sage px-8 text-base font-semibold text-white transition-all duration-300 hover:bg-brand-sage-dark hover:shadow-lg hover:shadow-brand-sage/20"
+        >
+          {hero.cta.label}
+          <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a
+          href="#menu"
+          class="inline-flex h-13 items-center rounded-full border-2 border-brand-heading px-8 text-base font-medium text-brand-heading transition-all duration-300 hover:bg-brand-heading hover:text-white"
+        >
+          Unser Menü
+        </a>
+      </div>
+    </div>
+
+    <!-- Cup Person mascot with mouse-tracking parallax -->
+    <div class="order-1 flex items-center justify-center lg:order-2" id="hero-parallax-zone">
+      <div id="hero-mascot-wrapper">
+        <div class="hero-mascot w-48 sm:w-56 lg:w-[280px] xl:w-[340px]" set:html={cupPerson} />
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
+    <div class="hero-text-5 flex flex-col items-center gap-2">
+      <span class="font-accent text-sm text-brand-muted">Scroll</span>
+      <div class="h-10 w-[1px] animate-pulse bg-gradient-to-b from-brand-sage to-transparent"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Mouse-tracking parallax for hero cup-person and floating elements
+  const heroSection = document.getElementById('heroSection')
+  const mascotWrapper = document.getElementById('hero-mascot-wrapper')
+
+  if (heroSection && mascotWrapper && window.matchMedia('(min-width: 1024px)').matches) {
+    let mouseX = 0, mouseY = 0
+    let currentX = 0, currentY = 0
+    let raf = 0
+
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect()
+      mouseX = (e.clientX - rect.left - rect.width / 2) / rect.width
+      mouseY = (e.clientY - rect.top - rect.height / 2) / rect.height
+      if (!raf) raf = requestAnimationFrame(smoothFollow)
+    })
+
+    heroSection.addEventListener('mouseleave', () => {
+      mouseX = 0
+      mouseY = 0
+      if (!raf) raf = requestAnimationFrame(smoothFollow)
+    })
+
+    function smoothFollow() {
+      raf = 0
+      currentX += (mouseX - currentX) * 0.06
+      currentY += (mouseY - currentY) * 0.06
+
+      // Move mascot opposite direction for depth illusion
+      mascotWrapper.style.transform = `translate(${currentX * -25}px, ${currentY * -18}px)`
+
+      // Move floating sketch elements in hero
+      const heroSketches = heroSection.querySelectorAll('[data-parallax]')
+      heroSketches.forEach(el => {
+        const speed = parseFloat(el.getAttribute('data-parallax') || '0') * 100
+        ;(el as HTMLElement).style.transform = `translate(${currentX * speed}px, ${currentY * speed}px)`
+      })
+
+      if (Math.abs(mouseX - currentX) > 0.0005 || Math.abs(mouseY - currentY) > 0.0005) {
+        raf = requestAnimationFrame(smoothFollow)
+      }
+    }
+  }
+</script>

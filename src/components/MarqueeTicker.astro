@@ -1,0 +1,48 @@
+---
+/**
+ * MarqueeTicker — Infinite scrolling text strip with café keywords.
+ * Pure CSS animation, edge fade gradients, pauses on hover.
+ */
+const words = ['Coffee', 'Cycling', 'Community', 'Kudos', 'Espresso', 'Gravel', 'Flat White', 'Bonn']
+---
+
+<div class="relative overflow-hidden bg-brand-espresso py-5 select-none" aria-hidden="true">
+  <!-- Edge fade gradients -->
+  <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-brand-espresso to-transparent"></div>
+  <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-brand-espresso to-transparent"></div>
+
+  <div class="marquee-track flex">
+    {[0, 1].map(() => (
+      <div class="flex shrink-0 items-center">
+        {words.map(word => (
+          <span class="flex shrink-0 items-center">
+            <span class="px-6 text-sm font-medium uppercase tracking-[0.3em] text-brand-cream/60 sm:px-8 sm:text-base">{word}</span>
+            <span class="text-brand-sage/40 text-[6px]">●</span>
+          </span>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee-track {
+    animation: marquee 25s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,72 @@
+---
+/**
+ * ScrollRouteLine — A hand-drawn SVG path that traces down the left side
+ * of the page as you scroll, like a cycling route map. Small icons appear
+ * at key section boundaries. This is the "one detail you remember."
+ */
+---
+
+<div id="scroll-route" class="pointer-events-none fixed left-4 top-0 z-40 hidden h-screen lg:left-8 lg:block">
+  <svg class="h-full w-8" viewBox="0 0 32 800" fill="none" preserveAspectRatio="none">
+    <!-- Hand-drawn route line -->
+    <path
+      id="route-path"
+      d="M16 0 C18 50, 14 100, 16 150 C18 200, 12 250, 16 300 C20 350, 14 400, 16 450 C12 500, 18 550, 16 600 C14 650, 18 700, 16 750 C14 780, 16 800, 16 800"
+      stroke="#6B8F71"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-dasharray="2000"
+      stroke-dashoffset="2000"
+      opacity="0.5"
+    />
+    <!-- Background track (very faint) -->
+    <path
+      d="M16 0 C18 50, 14 100, 16 150 C18 200, 12 250, 16 300 C20 350, 14 400, 16 450 C12 500, 18 550, 16 600 C14 650, 18 700, 16 750 C14 780, 16 800, 16 800"
+      stroke="#6B8F71"
+      stroke-width="1"
+      stroke-linecap="round"
+      opacity="0.08"
+    />
+  </svg>
+
+  <!-- Scroll progress dot -->
+  <div id="route-dot" class="absolute left-[12px] top-0 h-3.5 w-3.5 rounded-full border-2 border-brand-sage bg-brand-cream shadow-sm transition-none" style="transform: translateY(0px);">
+    <div class="absolute inset-0 animate-ping rounded-full bg-brand-sage opacity-20"></div>
+  </div>
+</div>
+
+<!-- Section markers — positioned absolutely along the route -->
+<div id="route-markers" class="pointer-events-none fixed left-0 top-0 z-40 hidden lg:block">
+  <!-- Coffee bean marker -->
+  <svg class="route-marker absolute left-[18px] w-5 opacity-0 transition-opacity duration-500" viewBox="0 0 24 24" fill="none">
+    <ellipse cx="12" cy="12" rx="6" ry="9" stroke="#6B8F71" stroke-width="1.2" transform="rotate(-20 12 12)"/>
+    <path d="M9 6 C11 10, 11 14, 9 18" stroke="#6B8F71" stroke-width="1" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<script>
+  const routePath = document.getElementById('route-path')
+  const routeDot = document.getElementById('route-dot')
+
+  if (routePath && routeDot) {
+    const pathLength = routePath.getTotalLength()
+    routePath.style.strokeDasharray = String(pathLength)
+    routePath.style.strokeDashoffset = String(pathLength)
+
+    function updateRoute() {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
+      const scrollProgress = Math.min(window.scrollY / scrollHeight, 1)
+
+      // Draw the line
+      const drawLength = pathLength * scrollProgress
+      routePath.style.strokeDashoffset = String(pathLength - drawLength)
+
+      // Move the dot
+      const dotY = scrollProgress * (window.innerHeight - 14)
+      routeDot.style.transform = `translateY(${dotY}px)`
+    }
+
+    window.addEventListener('scroll', updateRoute, { passive: true })
+    updateRoute()
+  }
+</script>

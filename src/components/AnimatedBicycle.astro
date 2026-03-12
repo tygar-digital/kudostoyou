@@ -1,0 +1,127 @@
+---
+/**
+ * AnimatedBicycle — Detailed bicycle with spinning wheels.
+ * Sits at the top of the PhotoScroll section (dark bg).
+ * Scroll-triggered: wheels start spinning when entering viewport (once).
+ * Desktop: flanked by dashed "road" lines.
+ * Colors: cream strokes on dark espresso background.
+ */
+---
+
+<div class="animated-bicycle-container flex items-center justify-center gap-4 lg:gap-6 px-6 lg:px-12 pb-6 lg:pb-10 pointer-events-none" aria-hidden="true">
+
+  <!-- Left deko line — dashed "road" feel (desktop only) -->
+  <div class="hidden lg:flex items-center gap-3 flex-1">
+    <div class="flex-1 h-px bg-brand-cream/[0.08] border-t border-dashed border-brand-cream/[0.10]"></div>
+    <svg viewBox="0 0 12 8" class="w-2 opacity-[0.12]"><path d="M2 4 L10 4" stroke="#F2EBE0" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 3" /></svg>
+  </div>
+
+  <div class="w-40 md:w-48 lg:w-56 opacity-[0.18]">
+    <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+
+      <!-- Back wheel group (spins) -->
+      <g class="bike-wheel" style="transform-origin: 65px 120px;">
+        <circle cx="65" cy="120" r="42" stroke="#F2EBE0" stroke-width="2.5" />
+        <circle cx="65" cy="120" r="36" stroke="#F2EBE0" stroke-width="0.5" opacity="0.15" />
+        <!-- Spokes -->
+        <line x1="65" y1="78" x2="65" y2="162" stroke="#F2EBE0" stroke-width="0.7" opacity="0.35" />
+        <line x1="23" y1="120" x2="107" y2="120" stroke="#F2EBE0" stroke-width="0.7" opacity="0.35" />
+        <line x1="35" y1="90" x2="95" y2="150" stroke="#F2EBE0" stroke-width="0.7" opacity="0.35" />
+        <line x1="95" y1="90" x2="35" y2="150" stroke="#F2EBE0" stroke-width="0.7" opacity="0.35" />
+        <!-- Hub -->
+        <circle cx="65" cy="120" r="4" fill="#F2EBE0" />
+      </g>
+
+      <!-- Front wheel group (spins) -->
+      <g class="bike-wheel" style="transform-origin: 215px 120px;">
+        <circle cx="215" cy="120" r="42" stroke="#F2EBE0" stroke-width="2.5" />
+        <circle cx="215" cy="120" r="36" stroke="#F2EBE0" stroke-width="0.5" opacity="0.15" />
+        <!-- Spokes -->
+        <line x1="215" y1="78" x2="215" y2="162" stroke="#F2EBE0" stroke-width="0.7" opacity="0.35" />
+        <line x1="173" y1="120" x2="257" y2="120" stroke="#F2EBE0" stroke-width="0.7" opacity="0.35" />
+        <line x1="185" y1="90" x2="245" y2="150" stroke="#F2EBE0" stroke-width="0.7" opacity="0.35" />
+        <line x1="245" y1="90" x2="185" y2="150" stroke="#F2EBE0" stroke-width="0.7" opacity="0.35" />
+        <!-- Hub -->
+        <circle cx="215" cy="120" r="4" fill="#F2EBE0" />
+      </g>
+
+      <!-- Frame (static) -->
+      <path d="M65 120 L110 50 L145 50 L215 120"
+        stroke="#F2EBE0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M65 120 L110 50"
+        stroke="#F2EBE0" stroke-width="2" stroke-linecap="round" />
+      <path d="M65 120 L140 50"
+        stroke="#F2EBE0" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+
+      <!-- Seat post + seat -->
+      <path d="M110 50 L107 28" stroke="#F2EBE0" stroke-width="2.5" stroke-linecap="round" />
+      <path d="M94 28 L120 28" stroke="#F2EBE0" stroke-width="3" stroke-linecap="round" />
+
+      <!-- Handlebars -->
+      <path d="M145 50 L152 30 C154 24, 162 22, 166 28" stroke="#F2EBE0" stroke-width="2.5" stroke-linecap="round" />
+      <path d="M166 28 C170 32, 172 40, 168 44" stroke="#F2EBE0" stroke-width="1.5" stroke-linecap="round" opacity="0.5" />
+
+      <!-- Fork -->
+      <path d="M145 50 L215 120" stroke="#F2EBE0" stroke-width="2.5" stroke-linecap="round" />
+
+      <!-- Pedal crank area -->
+      <circle cx="140" cy="120" r="10" stroke="#F2EBE0" stroke-width="2" />
+      <path d="M130 120 L150 120" stroke="#F2EBE0" stroke-width="2" stroke-linecap="round" />
+      <circle cx="140" cy="120" r="14" stroke="#F2EBE0" stroke-width="0.5" opacity="0.2" stroke-dasharray="2 3" />
+
+      <!-- Chain stay -->
+      <path d="M65 120 L140 120" stroke="#F2EBE0" stroke-width="1.2" stroke-linecap="round" opacity="0.3" />
+
+      <!-- Water bottle -->
+      <rect x="112" y="66" width="6" height="16" rx="3" stroke="#F2EBE0" stroke-width="1" opacity="0.4" />
+
+      <!-- Rear rack hint -->
+      <path d="M75 78 L110 50" stroke="#F2EBE0" stroke-width="0.8" stroke-linecap="round" opacity="0.25" />
+      <path d="M65 78 L105 78" stroke="#F2EBE0" stroke-width="0.8" stroke-linecap="round" opacity="0.25" />
+    </svg>
+  </div>
+
+  <!-- Right deko line (desktop only) -->
+  <div class="hidden lg:flex items-center gap-3 flex-1">
+    <svg viewBox="0 0 12 8" class="w-2 opacity-[0.12]"><path d="M2 4 L10 4" stroke="#F2EBE0" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 3" /></svg>
+    <div class="flex-1 h-px bg-brand-cream/[0.08] border-t border-dashed border-brand-cream/[0.10]"></div>
+  </div>
+
+</div>
+
+<style>
+  @keyframes wheel-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .bike-wheel {
+    animation: none;
+  }
+
+  .bicycle-active .bike-wheel {
+    animation: wheel-spin 3s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bicycle-active .bike-wheel {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const bikeEl = document.querySelector('.animated-bicycle-container')
+  if (bikeEl) {
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          bikeEl.classList.add('bicycle-active')
+          obs.unobserve(bikeEl)
+        }
+      },
+      { threshold: 0.2 }
+    )
+    obs.observe(bikeEl)
+  }
+</script>

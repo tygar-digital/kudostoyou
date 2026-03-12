@@ -1,0 +1,476 @@
+---
+/**
+ * LatteArtSVG — Artistic "Barista Pour" self-drawing rosetta latte art.
+ * Decorative element at the top of the Menu section (dark bg).
+ *
+ * Animation follows real latte art pour sequence:
+ *   Phase 1 (0-1.2s):    Cup rim + handle + rims draw
+ *   Phase 2 (1.2s):      Cream spreads radially from center
+ *   Phase 3 (1.2-2.4s):  6 leaf pairs unfurl bottom→top with pitcher wiggle
+ *   Phase 4 (2.6s):      Stem pulls through top→bottom
+ *   Phase 5 (3.2s):      Heart lobes form as finale (bounce easing)
+ *   Phase 6 (3.0-3.8s):  Foam swirl texture fades in, ripple ring
+ *   Phase 7 (4.2s+):     Breathing settle
+ *
+ * SVG features: organic asymmetric leaf paths with curl-backs, leaf veins,
+ * feTurbulence foam texture, radial cream spread.
+ * JS measures path lengths via getTotalLength() for proportional draw speed.
+ * Single-instance component (IDs: la-cream-clip, la-foam).
+ */
+---
+
+<div class="latte-art-container flex items-center justify-center gap-4 lg:gap-6 px-6 lg:px-12 pb-8 lg:pb-12 pointer-events-none" aria-hidden="true">
+
+  <!-- Left deko line -->
+  <div class="flex items-center gap-2 lg:gap-3 flex-1">
+    <div class="flex-1 h-px bg-brand-cream/[0.10]"></div>
+    <svg viewBox="0 0 8 8" class="w-1 lg:w-1.5 opacity-[0.12] lg:opacity-[0.15]"><circle cx="4" cy="4" r="3" stroke="#F2EBE0" stroke-width="1" fill="none" /></svg>
+    <div class="w-3 lg:w-8 h-px bg-brand-cream/[0.10] lg:bg-brand-cream/[0.12]"></div>
+  </div>
+
+  <!-- Latte Art SVG -->
+  <div class="latte-art-svg w-28 md:w-36 lg:w-44 opacity-[0.18] lg:opacity-[0.22] rotate-[6deg]">
+    <svg viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto" overflow="visible">
+
+      <defs>
+        <clipPath id="la-cream-clip">
+          <circle cx="100" cy="100" r="78" />
+        </clipPath>
+        <filter id="la-foam" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7" result="noise" />
+          <feColorMatrix type="saturate" values="0" in="noise" result="mono" />
+          <feComponentTransfer in="mono" result="faint">
+            <feFuncA type="linear" slope="0.04" intercept="0" />
+          </feComponentTransfer>
+          <feFlood flood-color="#F2EBE0" result="cream" />
+          <feComposite in="cream" in2="faint" operator="in" />
+        </filter>
+      </defs>
+
+      <!-- Saucer hint -->
+      <ellipse cx="100" cy="100" rx="96" ry="96" stroke="#F2EBE0" stroke-width="0.5"
+        stroke-dasharray="4 6" class="latte-fade latte-fade-saucer" />
+
+      <!-- Cream surface (clipped to cup interior) -->
+      <g clip-path="url(#la-cream-clip)">
+        <!-- Base cream — animated radial spread -->
+        <circle cx="100" cy="100" r="78" fill="#F2EBE0" class="latte-cream" />
+        <!-- Foam noise texture overlay -->
+        <circle cx="100" cy="100" r="78" fill="#F2EBE0" filter="url(#la-foam)" class="latte-cream-tex" />
+        <!-- Ripple ring — plays once after pour -->
+        <circle cx="100" cy="100" r="78" stroke="#F2EBE0" stroke-width="0.8" fill="none" class="cream-ripple" />
+        <!-- Foam swirl arcs -->
+        <path d="M68 92 C78 82, 100 78, 122 86" stroke="#F2EBE0" stroke-width="0.4" class="foam-swirl foam-swirl-1" />
+        <path d="M58 102 C73 88, 112 83, 138 98" stroke="#F2EBE0" stroke-width="0.3" class="foam-swirl foam-swirl-2" />
+        <path d="M62 114 C78 98, 118 92, 142 110" stroke="#F2EBE0" stroke-width="0.3" class="foam-swirl foam-swirl-3" />
+      </g>
+
+      <!-- Cup rim -->
+      <circle cx="100" cy="100" r="90" stroke="#F2EBE0" stroke-width="2"
+        class="latte-draw latte-cup" />
+
+      <!-- Inner rim -->
+      <circle cx="100" cy="100" r="82" stroke="#F2EBE0" stroke-width="0.8"
+        class="latte-fade" />
+
+      <!-- Handle -->
+      <path d="M186 84 C198 88, 204 100, 200 112 C196 120, 188 120, 186 116"
+        stroke="#F2EBE0" stroke-width="1.8" stroke-linecap="round"
+        class="latte-draw latte-handle" />
+
+      <!-- === Rosetta art (clipped to cream) === -->
+      <g clip-path="url(#la-cream-clip)">
+
+        <!-- Leaf pair 1 — bottom, widest, organic S-curves with curl-back tips -->
+        <g class="leaf-pair leaf-pair-1">
+          <path class="latte-draw latte-leaf-1"
+            d="M101 165 C93 160, 74 153, 58 143 C48 136, 42 129, 46 124 C48 121, 52 123, 54 127"
+            stroke="#F2EBE0" stroke-width="1.8" stroke-linecap="round" />
+          <path class="latte-draw latte-leaf-1"
+            d="M101 165 C109 159, 130 152, 146 142 C155 135, 160 128, 156 124 C154 121, 150 124, 149 128"
+            stroke="#F2EBE0" stroke-width="1.6" stroke-linecap="round" />
+          <path class="latte-draw latte-vein-1"
+            d="M101 165 C95 159, 78 151, 64 141"
+            stroke="#F2EBE0" stroke-width="0.5" stroke-linecap="round" opacity="0.4" />
+        </g>
+
+        <!-- Leaf pair 2 -->
+        <g class="leaf-pair leaf-pair-2">
+          <path class="latte-draw latte-leaf-2"
+            d="M100 152 C93 148, 76 141, 62 132 C53 126, 48 120, 52 116 C54 114, 57 116, 58 119"
+            stroke="#F2EBE0" stroke-width="1.7" stroke-linecap="round" />
+          <path class="latte-draw latte-leaf-2"
+            d="M100 152 C108 147, 126 140, 140 131 C149 125, 153 119, 149 115 C147 113, 144 115, 143 118"
+            stroke="#F2EBE0" stroke-width="1.5" stroke-linecap="round" />
+          <path class="latte-draw latte-vein-2"
+            d="M100 152 C107 146, 122 138, 136 129"
+            stroke="#F2EBE0" stroke-width="0.5" stroke-linecap="round" opacity="0.4" />
+        </g>
+
+        <!-- Leaf pair 3 -->
+        <g class="leaf-pair leaf-pair-3">
+          <path class="latte-draw latte-leaf-3"
+            d="M100 139 C94 136, 79 130, 68 122 C60 116, 56 111, 59 108 C61 106, 63 108, 64 111"
+            stroke="#F2EBE0" stroke-width="1.6" stroke-linecap="round" />
+          <path class="latte-draw latte-leaf-3"
+            d="M100 139 C107 135, 123 129, 134 121 C141 115, 144 110, 141 107 C139 105, 137 107, 136 110"
+            stroke="#F2EBE0" stroke-width="1.5" stroke-linecap="round" />
+          <path class="latte-draw latte-vein-3"
+            d="M100 139 C95 135, 82 128, 72 120"
+            stroke="#F2EBE0" stroke-width="0.5" stroke-linecap="round" opacity="0.4" />
+        </g>
+
+        <!-- Leaf pair 4 — no veins, thinner strokes -->
+        <g class="leaf-pair leaf-pair-4">
+          <path class="latte-draw latte-leaf-4"
+            d="M100 127 C95 124, 83 118, 74 112 C68 107, 66 103, 69 100 C70 98, 73 100, 74 103"
+            stroke="#F2EBE0" stroke-width="1.5" stroke-linecap="round" />
+          <path class="latte-draw latte-leaf-4"
+            d="M100 127 C106 123, 120 117, 128 111 C134 106, 136 102, 133 99 C131 97, 129 99, 128 102"
+            stroke="#F2EBE0" stroke-width="1.4" stroke-linecap="round" />
+        </g>
+
+        <!-- Leaf pair 5 -->
+        <g class="leaf-pair leaf-pair-5">
+          <path class="latte-draw latte-leaf-5"
+            d="M100 115 C96 112, 86 107, 80 101 C76 97, 75 93, 77 91"
+            stroke="#F2EBE0" stroke-width="1.4" stroke-linecap="round" />
+          <path class="latte-draw latte-leaf-5"
+            d="M100 115 C105 111, 116 106, 122 100 C126 96, 127 92, 125 90"
+            stroke="#F2EBE0" stroke-width="1.3" stroke-linecap="round" />
+        </g>
+
+        <!-- Leaf pair 6 — top, smallest, finest strokes -->
+        <g class="leaf-pair leaf-pair-6">
+          <path class="latte-draw latte-leaf-6"
+            d="M100 104 C97 101, 90 97, 85 92 C82 89, 82 86, 84 85"
+            stroke="#F2EBE0" stroke-width="1.3" stroke-linecap="round" />
+          <path class="latte-draw latte-leaf-6"
+            d="M100 104 C104 100, 112 96, 117 91 C120 88, 120 85, 118 84"
+            stroke="#F2EBE0" stroke-width="1.2" stroke-linecap="round" />
+        </g>
+
+        <!-- Stem — organic wave, slightly off-center -->
+        <path class="latte-draw latte-stem"
+          d="M100 70 C99 82, 101 94, 100 106 C99 120, 101 134, 100 148 C99 158, 100 164, 101 168"
+          stroke="#F2EBE0" stroke-width="1.8" stroke-linecap="round" />
+
+        <!-- Heart — two separate lobes, slight asymmetry -->
+        <path class="latte-draw latte-heart"
+          d="M100 80 C97 74, 90 70, 88 64 C86 58, 89 54, 94 54 C98 54, 100 58, 100 62"
+          stroke="#F2EBE0" stroke-width="1.3" stroke-linecap="round" />
+        <path class="latte-draw latte-heart"
+          d="M100 80 C103 74, 110 70, 112 64 C114 58, 111 54, 106 54 C102 54, 100 58, 100 62"
+          stroke="#F2EBE0" stroke-width="1.3" stroke-linecap="round" />
+      </g>
+
+    </svg>
+  </div>
+
+  <!-- Right deko line -->
+  <div class="flex items-center gap-2 lg:gap-3 flex-1">
+    <div class="w-3 lg:w-8 h-px bg-brand-cream/[0.10] lg:bg-brand-cream/[0.12]"></div>
+    <svg viewBox="0 0 8 8" class="w-1 lg:w-1.5 opacity-[0.12] lg:opacity-[0.15]"><circle cx="4" cy="4" r="3" stroke="#F2EBE0" stroke-width="1" fill="none" /></svg>
+    <div class="flex-1 h-px bg-brand-cream/[0.10]"></div>
+  </div>
+
+</div>
+
+<style>
+  /* ============================================================
+   * Initial states — everything hidden
+   * ============================================================ */
+  .latte-draw {
+    stroke-dashoffset: var(--path-len, 300);
+    stroke-dasharray: var(--path-len, 300);
+  }
+
+  .latte-fade { opacity: 0; }
+
+  .latte-cream {
+    opacity: 0;
+    transform: scale(0);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .latte-cream-tex { opacity: 0; }
+
+  .cream-ripple {
+    opacity: 0;
+    transform: scale(1);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .foam-swirl {
+    stroke-dashoffset: var(--swirl-len, 80);
+    stroke-dasharray: var(--swirl-len, 80);
+    opacity: 0;
+  }
+
+  .leaf-pair {
+    transform: scale(0.92);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  /* ============================================================
+   * Phase 1: Cup structure (0–1.2s)
+   * ============================================================ */
+  .latte-art-visible .latte-cup {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1.2s ease-out 0s;
+  }
+
+  .latte-art-visible .latte-handle {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.8s ease-out 0.3s;
+  }
+
+  .latte-art-visible .latte-fade {
+    opacity: 0.25;
+    transition: opacity 0.8s ease-out 0.6s;
+  }
+
+  .latte-art-visible .latte-fade-saucer {
+    opacity: 0.15;
+    transition: opacity 1s ease-out 0.8s;
+  }
+
+  /* ============================================================
+   * Phase 2: Cream spreading (1.2s) — radial scale from center
+   * ============================================================ */
+  .latte-art-visible .latte-cream {
+    opacity: 0.05;
+    transform: scale(1);
+    transition:
+      transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.2s,
+      opacity 0.8s ease-out 1.2s;
+  }
+
+  .latte-art-visible .latte-cream-tex {
+    opacity: 0.03;
+    transition: opacity 1.2s ease-out 1.5s;
+  }
+
+  /* ============================================================
+   * Phase 3: Leaf pairs — bottom→top, accelerating (1.2–2.4s)
+   * Each pair: draw + unfurl (scale 0.92→1 + slight rotation)
+   * Veins draw 0.1s after their parent leaf pair
+   * ============================================================ */
+
+  /* Pair 1 — bottom, widest */
+  .latte-art-visible .latte-leaf-1 {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) 1.2s;
+  }
+  .latte-art-visible .leaf-pair-1 {
+    transform: scale(1) rotate(0.5deg);
+    transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) 1.2s;
+  }
+  .latte-art-visible .latte-vein-1 {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.5s ease-out 1.3s;
+  }
+
+  /* Pair 2 */
+  .latte-art-visible .latte-leaf-2 {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.65s cubic-bezier(0.25, 0.1, 0.25, 1) 1.35s;
+  }
+  .latte-art-visible .leaf-pair-2 {
+    transform: scale(1) rotate(-0.3deg);
+    transition: transform 0.55s cubic-bezier(0.25, 0.1, 0.25, 1) 1.35s;
+  }
+  .latte-art-visible .latte-vein-2 {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.5s ease-out 1.45s;
+  }
+
+  /* Pair 3 */
+  .latte-art-visible .latte-leaf-3 {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) 1.5s;
+  }
+  .latte-art-visible .leaf-pair-3 {
+    transform: scale(1) rotate(0.4deg);
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 1.5s;
+  }
+  .latte-art-visible .latte-vein-3 {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.5s ease-out 1.6s;
+  }
+
+  /* Pair 4 — no veins */
+  .latte-art-visible .latte-leaf-4 {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.55s cubic-bezier(0.25, 0.1, 0.25, 1) 1.65s;
+  }
+  .latte-art-visible .leaf-pair-4 {
+    transform: scale(1) rotate(-0.2deg);
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 1.65s;
+  }
+
+  /* Pair 5 */
+  .latte-art-visible .latte-leaf-5 {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 1.8s;
+  }
+  .latte-art-visible .leaf-pair-5 {
+    transform: scale(1) rotate(0.3deg);
+    transition: transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 1.8s;
+  }
+
+  /* Pair 6 — top, smallest */
+  .latte-art-visible .latte-leaf-6 {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 1.95s;
+  }
+  .latte-art-visible .leaf-pair-6 {
+    transform: scale(1) rotate(-0.1deg);
+    transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 1.95s;
+  }
+
+  /* ============================================================
+   * Phase 4: Stem pull-through (2.6s)
+   * ============================================================ */
+  .latte-art-visible .latte-stem {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1) 2.6s;
+  }
+
+  /* ============================================================
+   * Phase 5: Heart finale — bounce easing (3.2s)
+   * ============================================================ */
+  .latte-art-visible .latte-heart {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 3.2s;
+  }
+
+  /* ============================================================
+   * Phase 6: Foam swirl texture + ripple ring (3.0–3.8s)
+   * ============================================================ */
+  .latte-art-visible .foam-swirl-1 {
+    stroke-dashoffset: 0;
+    opacity: 0.06;
+    transition: stroke-dashoffset 1.5s ease-out 3.0s, opacity 1s ease-out 3.0s;
+  }
+
+  .latte-art-visible .foam-swirl-2 {
+    stroke-dashoffset: 0;
+    opacity: 0.04;
+    transition: stroke-dashoffset 1.8s ease-out 3.2s, opacity 1s ease-out 3.2s;
+  }
+
+  .latte-art-visible .foam-swirl-3 {
+    stroke-dashoffset: 0;
+    opacity: 0.04;
+    transition: stroke-dashoffset 2s ease-out 3.4s, opacity 1s ease-out 3.4s;
+  }
+
+  @keyframes cream-ripple {
+    0% { opacity: 0.04; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.08); }
+  }
+
+  .latte-art-visible .cream-ripple {
+    animation: cream-ripple 0.8s ease-out 3.8s;
+  }
+
+  /* ============================================================
+   * Phase 7: Breathing settle (activated via JS after pour)
+   * ============================================================ */
+  @keyframes latte-breathe {
+    0%, 100% { opacity: 0.22; }
+    50% { opacity: 0.17; }
+  }
+
+  .latte-art-settled .latte-art-svg {
+    animation: latte-breathe 5s ease-in-out infinite;
+  }
+
+  /* ============================================================
+   * Reduced motion — show everything instantly, no animation
+   * ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    .latte-draw,
+    .foam-swirl {
+      stroke-dasharray: none !important;
+      stroke-dashoffset: 0 !important;
+      transition: none !important;
+    }
+
+    .latte-fade {
+      opacity: 0.25 !important;
+      transition: none !important;
+    }
+
+    .latte-fade-saucer {
+      opacity: 0.15 !important;
+    }
+
+    .latte-cream {
+      opacity: 0.05 !important;
+      transform: scale(1) !important;
+      transition: none !important;
+    }
+
+    .latte-cream-tex {
+      opacity: 0.03 !important;
+      transition: none !important;
+    }
+
+    .foam-swirl-1 { opacity: 0.06 !important; }
+    .foam-swirl-2,
+    .foam-swirl-3 { opacity: 0.04 !important; }
+
+    .leaf-pair {
+      transform: none !important;
+      transition: none !important;
+    }
+
+    .cream-ripple {
+      animation: none !important;
+      opacity: 0 !important;
+    }
+
+    .latte-art-settled .latte-art-svg {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script>
+  const latteEl = document.querySelector('.latte-art-container')
+  if (latteEl) {
+    // Measure exact path lengths for proportional draw speed
+    latteEl.querySelectorAll('.latte-draw, .foam-swirl').forEach((el) => {
+      if (el instanceof SVGGeometryElement) {
+        const len = el.getTotalLength()
+        if (el.classList.contains('foam-swirl')) {
+          el.style.setProperty('--swirl-len', String(len))
+        } else {
+          el.style.setProperty('--path-len', String(len))
+        }
+      }
+    })
+
+    // Trigger animation on scroll into view
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          latteEl.classList.add('latte-art-visible')
+          obs.unobserve(latteEl)
+
+          // Phase 7: Breathing settle after pour completes
+          setTimeout(() => {
+            latteEl.classList.add('latte-art-settled')
+          }, 4200)
+        }
+      },
+      { threshold: 0.15 }
+    )
+    obs.observe(latteEl)
+  }
+</script>

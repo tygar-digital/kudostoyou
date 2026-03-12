@@ -1,0 +1,75 @@
+---
+/**
+ * PhotoScroll — Full-width horizontal-scrolling photo gallery.
+ * Snap points, hidden scrollbar, edge-to-edge on dark background.
+ */
+import { sparkle } from './Sketches.astro'
+import AnimatedBicycle from './AnimatedBicycle.astro'
+
+const photos = [
+  { src: '/images/aussenansicht.webp', alt: 'kudos to you Café Außenansicht in der Colmantstraße Bonn' },
+  { src: '/images/barista-cycling.webp', alt: 'Barista bei kudos to you mit Fahrrad-Kultur' },
+  { src: '/images/croissants-latte.webp', alt: 'Frische Croissants und Latte Art bei kudos to you' },
+  { src: '/images/aufsteller-logo.webp', alt: 'kudos to you Aufsteller mit Herzlogo' },
+]
+---
+
+<section class="relative overflow-hidden bg-brand-espresso pb-16 sm:pb-20 pt-10 lg:pt-14">
+  <div class="grain absolute inset-0"></div>
+
+  <!-- Decorative bicycle at top of section -->
+  <div class="relative z-10">
+    <AnimatedBicycle />
+  </div>
+
+  <div class="relative z-10">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="reveal flex items-center gap-4">
+        <div class="h-[2px] w-12 bg-brand-sage"></div>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sage">Eindrücke</p>
+      </div>
+      <h2 class="reveal mt-4 font-heading text-4xl font-bold text-brand-cream sm:text-5xl">
+        Atmosphäre
+      </h2>
+    </div>
+
+    <!-- Horizontal scroll track -->
+    <div class="photo-scroll reveal mt-10 flex gap-5 overflow-x-auto px-6 pb-4 snap-x snap-mandatory lg:gap-6">
+      {photos.map((photo, i) => (
+        <div class:list={[
+          "photo-grain shrink-0 snap-center overflow-hidden rounded-xl",
+          i === 0 ? "w-[85vw] sm:w-[60vw] lg:w-[45vw]" : "w-[75vw] sm:w-[50vw] lg:w-[35vw]"
+        ]}>
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            class="h-[50vh] min-h-[300px] w-full object-cover sm:h-[55vh] lg:h-[60vh]"
+            loading="lazy"
+            width="800"
+            height="600"
+          />
+        </div>
+      ))}
+      <!-- Ghost spacer -->
+      <div class="shrink-0 w-6"></div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="reveal mt-4 flex items-center justify-center gap-2 text-brand-cream/40">
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+      <span class="font-accent text-sm">Wischen zum Entdecken</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .photo-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .photo-scroll::-webkit-scrollbar {
+    display: none;
+  }
+</style>

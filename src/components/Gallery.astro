@@ -1,0 +1,90 @@
+---
+import content from '../data/content.json'
+import { coffeeBean, sparkle, coffeeCup } from './Sketches.astro'
+const { instagram } = content
+
+const realPosts = instagram.posts.filter(id => !id.startsWith('PLACEHOLDER'))
+const hasRealPosts = realPosts.length > 0
+---
+
+<section id="gallery" class="relative overflow-hidden bg-brand-surface py-(--spacing-section)">
+  <div class="paper-texture absolute inset-0"></div>
+
+
+  <div class="relative z-10 mx-auto max-w-7xl px-6">
+    <div class="reveal flex flex-col items-center text-center">
+      <div class="flex items-center gap-4">
+        <div class="h-[2px] w-8 bg-brand-sage"></div>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sage">{instagram.sectionLabel}</p>
+        <div class="h-[2px] w-8 bg-brand-sage"></div>
+      </div>
+      <h2 class="mt-4 font-heading text-4xl font-bold text-brand-heading sm:text-5xl">{instagram.headline}</h2>
+      <p class="mt-3 font-accent text-lg text-brand-sage">{instagram.description}</p>
+    </div>
+
+    <!-- 2-Klick-Lösung (DSGVO) -->
+    <div class="mt-14">
+      <div id="instagram-placeholder" class="reveal mx-auto max-w-2xl">
+        <div class="rounded-2xl border border-brand-border bg-brand-bg p-10 text-center">
+          <svg class="mx-auto h-12 w-12 text-brand-latte" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <h3 class="mt-4 font-heading text-lg font-semibold text-brand-heading">Instagram-Inhalte laden</h3>
+          <p class="mt-2 text-sm text-brand-muted">
+            Mit dem Laden akzeptierst du die
+            <a href="https://help.instagram.com/581066165581870" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-brand-sage">Datenschutzerklärung von Meta</a>.
+          </p>
+          <button id="instagram-consent-btn" aria-label="Instagram-Inhalte laden" class="mt-6 inline-flex h-12 items-center rounded-full bg-brand-sage px-8 text-sm font-semibold text-white transition-all hover:bg-brand-sage-dark hover:shadow-lg hover:shadow-brand-sage/20">
+            Instagram-Inhalte anzeigen
+          </button>
+        </div>
+      </div>
+
+      <div id="instagram-embed" class="hidden">
+        {hasRealPosts ? (
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {realPosts.map((postId) => (
+              <div class="overflow-hidden rounded-2xl border border-brand-border bg-brand-bg">
+                <iframe data-src={`https://www.instagram.com/p/${postId}/embed/captioned/`} width="100%" height="500" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" style="border:none;overflow:hidden;max-width:100%;"></iframe>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="mx-auto max-w-2xl">
+            <div class="overflow-hidden rounded-2xl border border-brand-border bg-brand-bg">
+              <iframe data-src={`https://www.instagram.com/${instagram.handle}/embed/`} width="100%" height="600" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" style="border:none;overflow:hidden;max-width:100%;"></iframe>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <noscript>
+      <div class="mt-10 mx-auto max-w-2xl rounded-2xl border border-brand-border bg-brand-bg p-8 text-center">
+        <p class="text-brand-text">Besuche uns auf <a href={instagram.profileUrl} target="_blank" rel="noopener noreferrer" class="font-medium text-brand-sage underline underline-offset-4 hover:text-brand-sage-dark">Instagram (@{instagram.handle})</a>.</p>
+      </div>
+    </noscript>
+
+    <div class="reveal mt-10 text-center">
+      <a href={instagram.profileUrl} target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-3 rounded-full bg-brand-heading px-7 py-3.5 transition-all duration-300 hover:bg-brand-sage hover:shadow-lg hover:shadow-brand-sage/20">
+        <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <span class="text-sm font-semibold text-white">@{instagram.handle} folgen</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('instagram-consent-btn')?.addEventListener('click', () => {
+    document.getElementById('instagram-placeholder')?.classList.add('hidden')
+    const embed = document.getElementById('instagram-embed')
+    embed?.classList.remove('hidden')
+    embed?.querySelectorAll('iframe[data-src]').forEach(iframe => {
+      iframe.setAttribute('src', iframe.getAttribute('data-src') || '')
+    })
+    const script = document.createElement('script')
+    script.src = 'https://www.instagram.com/embed.js'
+    script.async = true
+    document.body.appendChild(script)
+  })
+</script>

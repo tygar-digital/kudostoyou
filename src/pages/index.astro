@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro'
+import Nav from '../components/Nav.astro'
+import Hero from '../components/Hero.astro'
+import MarqueeTicker from '../components/MarqueeTicker.astro'
+import About from '../components/About.astro'
+import Menu from '../components/Menu.astro'
+import Events from '../components/Events.astro'
+import PhotoScroll from '../components/PhotoScroll.astro'
+import Gallery from '../components/Gallery.astro'
+import Contact from '../components/Contact.astro'
+import Footer from '../components/Footer.astro'
+import FloatingDeko from '../components/FloatingDeko.astro'
+---
+
+<Base>
+  <Nav />
+  <main id="main-content">
+    <Hero />
+    <MarqueeTicker />
+    <About />
+    <FloatingDeko zone="after-about" />
+    <Menu />
+    <FloatingDeko zone="after-menu" />
+    <Events />
+    <PhotoScroll />
+    <FloatingDeko zone="after-photoscroll" />
+    <Gallery />
+    <FloatingDeko zone="near-contact" />
+    <Contact />
+  </main>
+  <Footer />
+</Base>

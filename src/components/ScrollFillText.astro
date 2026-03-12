@@ -1,0 +1,53 @@
+---
+/**
+ * ScrollFillText — Large statement text that fills with sage green
+ * as you scroll through it. Creates a dramatic reveal effect.
+ */
+interface Props {
+  text: string
+}
+
+const { text } = Astro.props
+---
+
+<section class="relative overflow-hidden bg-brand-bg py-24 sm:py-32 lg:py-40">
+  <div class="mx-auto max-w-7xl px-6">
+    <p
+      class="scroll-fill-text font-heading text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+      data-scroll-fill
+    >
+      {text}
+    </p>
+  </div>
+</section>
+
+<style>
+  .scroll-fill-text {
+    background-image: linear-gradient(to right, var(--color-brand-sage), var(--color-brand-sage));
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--color-brand-border);
+    transition: background-size 0.05s linear;
+  }
+</style>
+
+<script>
+  const fillTexts = document.querySelectorAll('[data-scroll-fill]')
+
+  function updateFill() {
+    fillTexts.forEach(el => {
+      const rect = el.getBoundingClientRect()
+      const windowH = window.innerHeight
+      const start = windowH * 0.7
+      const end = windowH * 0.4
+      const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1)
+      ;(el as HTMLElement).style.backgroundSize = `${progress * 100}% 100%`
+    })
+  }
+
+  window.addEventListener('scroll', updateFill, { passive: true })
+  updateFill()
+</script>

@@ -1,0 +1,74 @@
+---
+import content from '../data/content.json'
+import { bicycle, sparkle, coffeeBean } from './Sketches.astro'
+const { events } = content
+---
+
+<section id="events" class="relative overflow-hidden bg-brand-cream py-(--spacing-section)">
+  <div class="grain absolute inset-0 opacity-50"></div>
+  <div class="paper-texture absolute inset-0"></div>
+
+  <!-- Single subtle sketch accent -->
+  <div class="absolute right-[2%] top-[4%] w-36 opacity-[0.04] rotate-6 hidden lg:block" set:html={bicycle} />
+
+  <div class="relative z-10 mx-auto max-w-7xl px-6">
+    <!-- Section header — centered -->
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <div class="mx-auto flex items-center justify-center gap-4">
+        <div class="h-[2px] w-8 bg-brand-sage"></div>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sage">
+          {events.sectionLabel}
+        </p>
+        <div class="h-[2px] w-8 bg-brand-sage"></div>
+      </div>
+      <h2 class="mt-4 font-heading text-4xl font-bold text-brand-heading sm:text-5xl">
+        {events.headline}
+      </h2>
+      <p class="mt-4 text-lg text-brand-text">
+        {events.description}
+      </p>
+    </div>
+
+    <!-- Event cards — staggered -->
+    <div class="reveal-stagger mt-12 grid gap-6 md:grid-cols-3">
+      {events.items.map((event, i) => (
+        <div
+          class:list={[
+            "reveal sketch-wobble group relative overflow-hidden rounded-2xl border border-brand-border bg-brand-surface p-8 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-xl hover:shadow-brand-sage/5",
+            i === 1 && "md:translate-y-8"
+          ]}
+        >
+          <span class="inline-flex rounded-full bg-brand-sage-light px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-sage-dark">
+            {event.tag}
+          </span>
+
+          <h3 class="mt-5 font-heading text-xl font-bold text-brand-heading">
+            {event.title}
+          </h3>
+
+          <p class="mt-3 font-accent text-base text-brand-sage">
+            {event.date}
+          </p>
+
+          <p class="mt-4 text-sm leading-relaxed text-brand-muted">
+            {event.description}
+          </p>
+
+          <details class="mt-5">
+            <summary class="flex cursor-pointer items-center gap-2 text-sm font-medium text-brand-muted transition-colors hover:text-brand-sage">
+              <span>Mehr erfahren</span>
+              <svg class="h-4 w-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="mt-3 space-y-1.5 border-t border-brand-border pt-3">
+              {event.details?.map((detail) => (
+                <p class="text-sm text-brand-text">{detail}</p>
+              ))}
+            </div>
+          </details>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

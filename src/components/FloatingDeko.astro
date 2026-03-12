@@ -1,0 +1,80 @@
+---
+/**
+ * FloatingDeko — Ambient floating SVG doodles between sections.
+ * Pure CSS @keyframes, no JS. Respects prefers-reduced-motion.
+ * Hidden on mobile (< lg) to preserve clean layout.
+ */
+import { coffeeBean, sparkle, steamWisp, tinyLeaf } from './Sketches.astro'
+
+interface Props {
+  zone: 'after-about' | 'after-menu' | 'after-photoscroll' | 'near-contact'
+}
+
+const { zone } = Astro.props
+
+const sketches: Record<string, string> = { coffeeBean, sparkle, steamWisp, tinyLeaf }
+
+const config: Record<string, {
+  sketch: string
+  position: string
+  size: string
+  opacity: string
+  rotate: string
+  animation: string
+  duration: string
+}> = {
+  'after-about': {
+    sketch: 'coffeeBean',
+    position: 'right-[8%] -top-16',
+    size: 'w-6',
+    opacity: 'opacity-[0.06]',
+    rotate: '-rotate-12',
+    animation: 'float-drift-a',
+    duration: '24s',
+  },
+  'after-menu': {
+    sketch: 'steamWisp',
+    position: 'left-[12%] -top-12',
+    size: 'w-5',
+    opacity: 'opacity-[0.07]',
+    rotate: 'rotate-6',
+    animation: 'float-drift-b',
+    duration: '28s',
+  },
+  'after-photoscroll': {
+    sketch: 'sparkle',
+    position: 'right-[6%] -top-10',
+    size: 'w-5',
+    opacity: 'opacity-[0.05]',
+    rotate: 'rotate-20',
+    animation: 'float-drift-c',
+    duration: '22s',
+  },
+  'near-contact': {
+    sketch: 'tinyLeaf',
+    position: 'left-[10%] -top-14',
+    size: 'w-6',
+    opacity: 'opacity-[0.06]',
+    rotate: '-rotate-6',
+    animation: 'float-drift-a',
+    duration: '26s',
+  },
+}
+
+const c = config[zone]
+const svgContent = sketches[c.sketch]
+---
+
+<div class="relative hidden lg:block pointer-events-none" aria-hidden="true">
+  <div
+    class:list={[
+      'float-deko absolute',
+      c.position,
+      c.size,
+      c.opacity,
+      c.rotate,
+    ]}
+    style={`animation: ${c.animation} ${c.duration} ease-in-out infinite;`}
+    set:html={svgContent}
+  />
+</div>
