@@ -1,9 +1,27 @@
 ---
 /**
- * MarqueeTicker — Infinite scrolling text strip with café keywords.
+ * MarqueeTicker — Infinite scrolling hand-drawn icons strip.
  * Pure CSS animation, edge fade gradients, pauses on hover.
  */
-const words = ['Coffee', 'Cycling', 'Community', 'Kudos', 'Espresso', 'Gravel', 'Flat White', 'Bonn']
+
+const icons = [
+  // Coffee cup
+  `<svg viewBox="0 0 48 48" fill="none" class="h-7 w-7 sm:h-8 sm:w-8"><path d="M10 14c-1-2 30-3 28 0l-4 22c-1 4-19 5-20 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7 14c-1-2 35-3 34 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M38 18c4 0 7 2 6 7s-5 6-8 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M20 6c-1-4 3-6 2-2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/><path d="M28 5c-1-5 3-6 2-2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/></svg>`,
+  // Croissant
+  `<svg viewBox="0 0 48 48" fill="none" class="h-7 w-7 sm:h-8 sm:w-8"><path d="M8 32c2-8 8-18 16-20s14 4 16 12c1 4-2 6-6 5-3-1-5-4-8-3s-5 5-8 6c-4 1-7-1-6-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 26c2-4 6-10 10-10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/><path d="M20 28c2-4 5-8 8-8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/></svg>`,
+  // Bicycle
+  `<svg viewBox="0 0 56 48" fill="none" class="h-7 w-7 sm:h-8 sm:w-8"><circle cx="14" cy="32" r="9" stroke="currentColor" stroke-width="1.8"/><circle cx="42" cy="32" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M14 32l8-16h10l4 8-6 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 16l20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M19 14h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+  // Coffee bean
+  `<svg viewBox="0 0 40 48" fill="none" class="h-6 w-6 sm:h-7 sm:w-7"><path d="M20 4c10-1 18 8 16 20S24 44 16 44 2 36 4 24 10 5 20 4z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 16c2 4 4 8 4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/></svg>`,
+  // Heart
+  `<svg viewBox="0 0 48 48" fill="none" class="h-6 w-6 sm:h-7 sm:w-7"><path d="M24 42C20 36 4 28 3 18 2 8 10 2 17 4c5 1 7 6 7 6s2-5 7-6c7-2 15 4 14 14-1 10-17 18-21 24z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+  // Leaf/plant
+  `<svg viewBox="0 0 40 48" fill="none" class="h-6 w-6 sm:h-7 sm:w-7"><path d="M20 44c0-14 2-24 14-32" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M34 12C26 14 18 22 20 36" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M20 44c0-12-4-22-14-30" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 14c8 2 14 10 14 22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+  // Steam/aroma
+  `<svg viewBox="0 0 36 48" fill="none" class="h-6 w-6 sm:h-7 sm:w-7"><path d="M10 40c0-8 6-10 6-18s-6-10-6-18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/><path d="M18 40c0-8 6-10 6-18s-6-10-6-18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/><path d="M26 40c0-8 6-10 6-18s-6-10-6-18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/></svg>`,
+  // Wheel/gear
+  `<svg viewBox="0 0 48 48" fill="none" class="h-7 w-7 sm:h-8 sm:w-8"><circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="1.8"/><circle cx="24" cy="24" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M24 10v4M24 34v4M10 24h4M34 24h4M14 14l3 3M31 31l3 3M34 14l-3 3M14 34l-3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/></svg>`,
+]
 ---
 
 <div class="relative overflow-hidden bg-brand-espresso py-5 select-none" aria-hidden="true">
@@ -11,14 +29,11 @@ const words = ['Coffee', 'Cycling', 'Community', 'Kudos', 'Espresso', 'Gravel', 
   <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-brand-espresso to-transparent"></div>
   <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-brand-espresso to-transparent"></div>
 
-  <div class="marquee-track flex">
+  <div class="marquee-track flex text-brand-cream/50">
     {[0, 1].map(() => (
       <div class="flex shrink-0 items-center">
-        {words.map(word => (
-          <span class="flex shrink-0 items-center">
-            <span class="px-6 text-sm font-medium uppercase tracking-[0.3em] text-brand-cream/60 sm:px-8 sm:text-base">{word}</span>
-            <span class="text-brand-sage/40 text-[6px]">●</span>
-          </span>
+        {icons.map(icon => (
+          <span class="flex shrink-0 items-center px-7 sm:px-10" set:html={icon} />
         ))}
       </div>
     ))}
@@ -27,7 +42,7 @@ const words = ['Coffee', 'Cycling', 'Community', 'Kudos', 'Espresso', 'Gravel', 
 
 <style>
   .marquee-track {
-    animation: marquee 25s linear infinite;
+    animation: marquee 30s linear infinite;
     width: max-content;
   }
 
