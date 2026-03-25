@@ -3,12 +3,12 @@ import content from '../data/content.json'
 const { footer, brand } = content
 ---
 
-<footer class="relative overflow-hidden border-t border-brand-border bg-brand-espresso pt-16 pb-12">
+<footer class="relative overflow-hidden border-t border-brand-muted/30 bg-brand-espresso pt-16 pb-12">
   <div class="grain absolute inset-0 opacity-30"></div>
 
   <!-- Hand-drawn wave top border -->
   <svg class="absolute left-0 top-0 w-full -translate-y-[calc(100%-1px)]" viewBox="0 0 1440 40" fill="none" preserveAspectRatio="none" style="height: 20px;">
-    <path d="M0 40 C120 10, 240 30, 360 20 C480 10, 600 35, 720 20 C840 5, 960 30, 1080 18 C1200 6, 1320 28, 1440 15 L1440 40 L0 40Z" fill="#2C1E13"/>
+    <path d="M0 40 C120 10, 240 30, 360 20 C480 10, 600 35, 720 20 C840 5, 960 30, 1080 18 C1200 6, 1320 28, 1440 15 L1440 40 L0 40Z" fill="#2A1810"/>
   </svg>
 
 
@@ -29,15 +29,15 @@ const { footer, brand } = content
 
       <!-- Hand-drawn line -->
       <svg class="h-[2px] w-32" viewBox="0 0 130 2" fill="none">
-        <path d="M0 1 C20 0.3, 40 1.7, 65 0.8 C90 -0.1, 110 1.6, 130 1" stroke="#6F4E37" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+        <path d="M0 1 C20 0.3, 40 1.7, 65 0.8 C90 -0.1, 110 1.6, 130 1" stroke="#6B4226" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
       </svg>
     </div>
 
     <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-      <p class="text-sm text-brand-latte/70">{footer.copyright}</p>
+      <p class="text-sm text-brand-muted/70">{footer.copyright}</p>
       <div class="flex items-center gap-6">
         {footer.links.map((link) => (
-          <a href={link.href} aria-label={`${link.label} öffnen`} class="text-sm text-brand-latte/70 transition-colors hover:text-brand-sage">
+          <a href={link.href} aria-label={`${link.label} öffnen`} class="text-sm text-brand-muted/70 transition-colors hover:text-brand-sage">
             {link.label}
           </a>
         ))}

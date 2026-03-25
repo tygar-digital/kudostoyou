@@ -6,7 +6,7 @@ const { about } = content
 const featureIllustrations = [coffeeCup, bicycle, chair]
 ---
 
-<section id="about" class="relative overflow-hidden bg-brand-bg">
+<section id="about" class="relative overflow-hidden bg-brand-cream">
   <div class="paper-texture absolute inset-0"></div>
 
   <!-- Single subtle sketch accent -->
@@ -44,7 +44,7 @@ const featureIllustrations = [coffeeCup, bicycle, chair]
       <div>
         <!-- Panel 1: Headline + intro -->
         <div class="reveal">
-          <h2 class="font-heading text-4xl font-bold leading-tight text-brand-heading sm:text-5xl lg:text-6xl">
+          <h2 class="font-heading text-4xl font-bold leading-tight text-brand-text sm:text-5xl lg:text-6xl">
             {about.headline}
           </h2>
           <p class="mt-8 text-lg leading-relaxed text-brand-text">
@@ -58,23 +58,23 @@ const featureIllustrations = [coffeeCup, bicycle, chair]
         <!-- Hand-drawn sage divider + heart -->
         <div class="my-12 flex items-center gap-4">
           <svg class="h-[2px] flex-1 opacity-20" viewBox="0 0 400 2" fill="none" preserveAspectRatio="none">
-            <path d="M0 1 C60 0.3, 120 1.8, 200 0.8 C280 -0.2, 340 1.6, 400 1" stroke="#6F4E37" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M0 1 C60 0.3, 120 1.8, 200 0.8 C280 -0.2, 340 1.6, 400 1" stroke="#6B4226" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
           <div class="w-8 shrink-0 opacity-15 -rotate-[8deg] text-brand-sage [&_path]:!stroke-brand-sage" set:html={sketchyHeart} />
           <svg class="h-[2px] flex-1 opacity-20" viewBox="0 0 400 2" fill="none" preserveAspectRatio="none">
-            <path d="M0 1 C60 0.3, 120 1.8, 200 0.8 C280 -0.2, 340 1.6, 400 1" stroke="#6F4E37" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M0 1 C60 0.3, 120 1.8, 200 0.8 C280 -0.2, 340 1.6, 400 1" stroke="#6B4226" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
 
         <!-- Panel 2: Feature cards (stacked for sticky scroll effect) -->
         <div class="reveal-stagger space-y-6">
           {about.features.map((feature, i) => (
-            <div class="reveal sketch-wobble group relative overflow-hidden rounded-2xl border border-brand-border bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
+            <div class="reveal sketch-wobble group relative overflow-hidden rounded-2xl border border-brand-muted/30 bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
               <div class="absolute inset-x-0 top-0 h-[2px] bg-brand-sage opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
               <div class="flex items-start gap-5">
                 <div class="w-12 shrink-0 opacity-50 transition-opacity duration-300 group-hover:opacity-80" set:html={featureIllustrations[i]} />
                 <div>
-                  <h3 class="font-heading text-lg font-semibold text-brand-heading">{feature.title}</h3>
+                  <h3 class="font-heading text-lg font-semibold text-brand-text">{feature.title}</h3>
                   <p class="mt-2 text-sm leading-relaxed text-brand-muted">{feature.description}</p>
                 </div>
               </div>

@@ -43,27 +43,14 @@
   font-display: swap;
 }
 
-/* === Brand Theme – kudos to you · Tactile Atelier === */
+/* === Brand Theme – kudos to you · 6-Color Palette === */
 @theme {
-  --color-brand-bg: #F2EBE0;
+  --color-brand-cream: #F5EBDA;
   --color-brand-surface: #FFFFFF;
-  --color-brand-surface-alt: #EDE8DF;
-  --color-brand-border: #D6CEBE;
-
-  --color-brand-heading: #2B1F14;
-  --color-brand-text: #3D3529;
-  --color-brand-muted: #8A7E6F;
-
-  --color-brand-sage: #6F4E37;
-  --color-brand-sage-dark: #5A3D2B;
-  --color-brand-sage-light: #EDE2D8;
-
-  --color-brand-green: #8FAD74;
-  --color-brand-green-dark: #6B8B57;
-
-  --color-brand-espresso: #2C1E13;
-  --color-brand-cream: #F5F0E8;
-  --color-brand-latte: #A38B7B;
+  --color-brand-espresso: #2A1810;
+  --color-brand-sage: #6B4226;
+  --color-brand-text: #3A2E22;
+  --color-brand-muted: #9C8470;
 
   --font-heading: "Rubik", system-ui, sans-serif;
   --font-body: "DM Sans", system-ui, sans-serif;
@@ -82,7 +69,7 @@ html {
 body {
   font-family: var(--font-body);
   color: var(--color-brand-text);
-  background-color: var(--color-brand-bg);
+  background-color: var(--color-brand-cream);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -261,11 +248,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-brand-bg);
+  background: var(--color-brand-cream);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-brand-border);
+  background: var(--color-brand-muted);
   border-radius: 4px;
 }
 

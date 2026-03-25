@@ -17,7 +17,7 @@ const { hero } = content
   <!-- Sage green glow — top right -->
   <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-sage/[0.06] blur-3xl" data-parallax="-0.04"></div>
   <!-- Warm glow — bottom left -->
-  <div class="absolute -left-16 bottom-0 h-48 w-48 rounded-full bg-brand-latte/[0.08] blur-3xl" data-parallax="-0.03"></div>
+  <div class="absolute -left-16 bottom-0 h-48 w-48 rounded-full bg-brand-muted/[0.08] blur-3xl" data-parallax="-0.03"></div>
 
   <div class="relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-6 pt-28 pb-32 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16 lg:pt-0 lg:pb-0">
     <!-- Text side -->
@@ -26,17 +26,17 @@ const { hero } = content
         Colmantstraße 5, Bonn
       </p>
 
-      <h1 class="hero-text-2 mt-4 font-heading text-[3.2rem] font-bold leading-[0.95] tracking-tight text-brand-heading sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem]">
+      <h1 class="hero-text-2 mt-4 font-heading text-[3.2rem] font-bold leading-[0.95] tracking-tight text-brand-text sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem]">
         {hero.headline}
       </h1>
 
       <p class="hero-text-3 mt-5 text-xl font-medium text-brand-muted sm:text-2xl">
-        <span class="text-brand-green">Coffee</span> & Cycling Culture
+        <span class="text-brand-sage">Coffee</span> & Cycling Culture
       </p>
 
       <!-- Hand-drawn sage divider -->
       <svg class="hero-text-3 mt-6 h-[3px] w-32" viewBox="0 0 130 3" fill="none">
-        <path d="M0 2 C25 0.5, 45 2.5, 65 1 C85 -0.5, 105 2.5, 130 1" stroke="#6F4E37" stroke-width="2" stroke-linecap="round"/>
+        <path d="M0 2 C25 0.5, 45 2.5, 65 1 C85 -0.5, 105 2.5, 130 1" stroke="#6B4226" stroke-width="2" stroke-linecap="round"/>
       </svg>
 
       <p class="hero-text-4 mt-6 max-w-md text-base leading-relaxed text-brand-text sm:text-lg">
@@ -46,7 +46,7 @@ const { hero } = content
       <div class="hero-text-5 mt-8 flex flex-col gap-4 sm:flex-row">
         <a
           href={hero.cta.href}
-          class="group inline-flex h-13 items-center gap-2 rounded-full bg-brand-sage px-8 text-base font-semibold text-white transition-all duration-300 hover:bg-brand-sage-dark hover:shadow-lg hover:shadow-brand-sage/20"
+          class="group inline-flex h-13 items-center gap-2 rounded-full bg-brand-sage px-8 text-base font-semibold text-white transition-all duration-300 hover:brightness-90 hover:shadow-lg hover:shadow-brand-sage/20"
         >
           {hero.cta.label}
           <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -55,7 +55,7 @@ const { hero } = content
         </a>
         <a
           href="#menu"
-          class="inline-flex h-13 items-center rounded-full border-2 border-brand-heading px-8 text-base font-medium text-brand-heading transition-all duration-300 hover:bg-brand-heading hover:text-white"
+          class="inline-flex h-13 items-center rounded-full border-2 border-brand-text px-8 text-base font-medium text-brand-text transition-all duration-300 hover:bg-brand-text hover:text-white"
         >
           Unser Menü
         </a>

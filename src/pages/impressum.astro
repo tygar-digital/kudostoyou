@@ -8,10 +8,10 @@ const { brand } = content
 
 <Base title={`Impressum – ${brand.name}`} description="Impressum und Angaben gemäß § 5 TMG.">
   <Nav />
-  <main class="bg-brand-bg pt-32 pb-(--spacing-section)">
+  <main class="bg-brand-cream pt-32 pb-(--spacing-section)">
     <div class="mx-auto max-w-3xl px-6">
-      <h1 class="font-heading text-4xl font-bold text-brand-heading sm:text-5xl">Impressum</h1>
-      <p class="mt-4 font-accent text-lg text-brand-latte">Angaben gemäß § 5 TMG</p>
+      <h1 class="font-heading text-4xl font-bold text-brand-text sm:text-5xl">Impressum</h1>
+      <p class="mt-4 font-accent text-lg text-brand-muted">Angaben gemäß § 5 TMG</p>
 
       <!-- Hand-drawn divider -->
       <svg class="mt-8 h-[2px] w-full" viewBox="0 0 600 3" fill="none" preserveAspectRatio="none">
@@ -30,7 +30,7 @@ const { brand } = content
         </div>
 
         <div>
-          <h2 class="font-heading text-xl font-semibold text-brand-heading">Verantwortlich</h2>
+          <h2 class="font-heading text-xl font-semibold text-brand-text">Verantwortlich</h2>
           <p class="mt-3">
             [Vor- und Nachname des Inhabers]<br />
             {brand.name}<br />
@@ -39,7 +39,7 @@ const { brand } = content
         </div>
 
         <div>
-          <h2 class="font-heading text-xl font-semibold text-brand-heading">Kontakt</h2>
+          <h2 class="font-heading text-xl font-semibold text-brand-text">Kontakt</h2>
           <p class="mt-3">
             Telefon: {brand.phone}<br />
             E-Mail: <a href={`mailto:${brand.email}`} class="underline underline-offset-2 hover:text-brand-coffee">{brand.email}</a>
@@ -47,7 +47,7 @@ const { brand } = content
         </div>
 
         <div>
-          <h2 class="font-heading text-xl font-semibold text-brand-heading">Umsatzsteuer-ID</h2>
+          <h2 class="font-heading text-xl font-semibold text-brand-text">Umsatzsteuer-ID</h2>
           <p class="mt-3">
             Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br />
             [USt-ID eintragen, z.B. DE123456789]
@@ -55,14 +55,14 @@ const { brand } = content
         </div>
 
         <div>
-          <h2 class="font-heading text-xl font-semibold text-brand-heading">Gewerbeanmeldung</h2>
+          <h2 class="font-heading text-xl font-semibold text-brand-text">Gewerbeanmeldung</h2>
           <p class="mt-3">
             Die Gewerbeanmeldung wurde durchgeführt durch: [zuständiges Ordnungsamt eintragen]
           </p>
         </div>
 
         <div>
-          <h2 class="font-heading text-xl font-semibold text-brand-heading">Streitschlichtung</h2>
+          <h2 class="font-heading text-xl font-semibold text-brand-text">Streitschlichtung</h2>
           <p class="mt-3">
             Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
             <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-brand-coffee">https://ec.europa.eu/consumers/odr/</a>
@@ -74,7 +74,7 @@ const { brand } = content
         </div>
 
         <div>
-          <h2 class="font-heading text-xl font-semibold text-brand-heading">Haftung für Inhalte</h2>
+          <h2 class="font-heading text-xl font-semibold text-brand-text">Haftung für Inhalte</h2>
           <p class="mt-3">
             Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den
             allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
@@ -84,7 +84,7 @@ const { brand } = content
         </div>
 
         <div>
-          <h2 class="font-heading text-xl font-semibold text-brand-heading">Haftung für Links</h2>
+          <h2 class="font-heading text-xl font-semibold text-brand-text">Haftung für Links</h2>
           <p class="mt-3">
             Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.
             Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der

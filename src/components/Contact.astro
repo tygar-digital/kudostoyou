@@ -5,7 +5,7 @@ import RisingSteam from './RisingSteam.astro'
 const { contact, brand } = content
 ---
 
-<section id="contact" class="relative overflow-hidden bg-brand-bg pb-(--spacing-section) pt-10 lg:pt-14">
+<section id="contact" class="relative overflow-hidden bg-brand-cream pb-(--spacing-section) pt-10 lg:pt-14">
   <div class="paper-texture absolute inset-0"></div>
 
   <!-- Decorative steam cup at top of section -->
@@ -23,7 +23,7 @@ const { contact, brand } = content
         </p>
         <div class="h-[2px] w-8 bg-brand-sage"></div>
       </div>
-      <h2 class="mt-4 font-heading text-4xl font-bold text-brand-heading sm:text-5xl lg:text-6xl">
+      <h2 class="mt-4 font-heading text-4xl font-bold text-brand-text sm:text-5xl lg:text-6xl">
         {contact.headline}
       </h2>
       <p class="mt-3 flex items-center justify-center gap-2 font-accent text-xl text-brand-sage">
@@ -50,33 +50,33 @@ const { contact, brand } = content
       <!-- Info cards -->
       <div class="reveal-stagger flex flex-col gap-5">
         <!-- Address -->
-        <div class="reveal sketch-wobble group rounded-2xl border border-brand-border bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
+        <div class="reveal sketch-wobble group rounded-2xl border border-brand-muted/30 bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
           <div class="absolute inset-x-0 top-0 h-[2px] bg-brand-sage opacity-0 transition-opacity duration-500 group-hover:opacity-100 rounded-t-2xl"></div>
           <div class="flex items-start gap-5">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-sage-light">
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-sage/10">
               <svg class="h-5 w-5 text-brand-sage" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
               </svg>
             </div>
             <div>
-              <h3 class="font-heading text-lg font-semibold text-brand-heading">Adresse</h3>
+              <h3 class="font-heading text-lg font-semibold text-brand-text">Adresse</h3>
               <p class="mt-1 text-brand-text">{brand.address}</p>
             </div>
           </div>
         </div>
 
         <!-- Hours -->
-        <div class="reveal sketch-wobble group rounded-2xl border border-brand-border bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
+        <div class="reveal sketch-wobble group rounded-2xl border border-brand-muted/30 bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
           <div class="absolute inset-x-0 top-0 h-[2px] bg-brand-sage opacity-0 transition-opacity duration-500 group-hover:opacity-100 rounded-t-2xl"></div>
           <div class="flex items-start gap-5">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-sage-light">
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-sage/10">
               <svg class="h-5 w-5 text-brand-sage" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <h3 class="font-heading text-lg font-semibold text-brand-heading">Öffnungszeiten</h3>
+              <h3 class="font-heading text-lg font-semibold text-brand-text">Öffnungszeiten</h3>
               <div class="mt-2 flex flex-col gap-2">
                 {contact.hours.map((h) => (
                   <div class="flex justify-between gap-6 text-sm">
@@ -90,20 +90,20 @@ const { contact, brand } = content
         </div>
 
         <!-- Contact -->
-        <div class="reveal sketch-wobble group rounded-2xl border border-brand-border bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
+        <div class="reveal sketch-wobble group rounded-2xl border border-brand-muted/30 bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
           <div class="absolute inset-x-0 top-0 h-[2px] bg-brand-sage opacity-0 transition-opacity duration-500 group-hover:opacity-100 rounded-t-2xl"></div>
           <div class="flex items-start gap-5">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-sage-light">
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-sage/10">
               <svg class="h-5 w-5 text-brand-sage" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
               </svg>
             </div>
             <div>
-              <h3 class="font-heading text-lg font-semibold text-brand-heading">Kontakt</h3>
-              <a href={`mailto:${brand.email}`} class="mt-1 block text-brand-sage underline decoration-brand-sage/30 underline-offset-4 transition-colors hover:text-brand-sage-dark hover:decoration-brand-sage-dark">
+              <h3 class="font-heading text-lg font-semibold text-brand-text">Kontakt</h3>
+              <a href={`mailto:${brand.email}`} class="mt-1 block text-brand-sage underline decoration-brand-sage/30 underline-offset-4 transition-colors hover:brightness-90 hover:decoration-brand-sage">
                 {brand.email}
               </a>
-              <a href={`tel:${brand.phone.replace(/\s/g, '')}`} aria-label={`Anrufen: ${brand.phone}`} class="mt-0.5 block text-sm text-brand-text underline decoration-brand-border underline-offset-4 transition-colors hover:text-brand-sage hover:decoration-brand-sage">
+              <a href={`tel:${brand.phone.replace(/\s/g, '')}`} aria-label={`Anrufen: ${brand.phone}`} class="mt-0.5 block text-sm text-brand-text underline decoration-brand-muted/30 underline-offset-4 transition-colors hover:text-brand-sage hover:decoration-brand-sage">
                 {brand.phone}
               </a>
             </div>
@@ -115,7 +115,7 @@ const { contact, brand } = content
           href={brand.social.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          class="reveal sketch-wobble group flex items-center gap-4 rounded-2xl border border-brand-border bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5"
+          class="reveal sketch-wobble group flex items-center gap-4 rounded-2xl border border-brand-muted/30 bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5"
         >
           <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-sage text-white">
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -123,27 +123,27 @@ const { contact, brand } = content
             </svg>
           </div>
           <div>
-            <p class="font-heading text-sm font-semibold text-brand-heading">Folge uns auf Instagram</p>
+            <p class="font-heading text-sm font-semibold text-brand-text">Folge uns auf Instagram</p>
             <p class="text-sm text-brand-muted">@kudostoyou.cc</p>
           </div>
         </a>
       </div>
 
       <!-- Map: 2-Klick-Lösung (DSGVO) -->
-      <div class="reveal flex flex-col overflow-hidden rounded-2xl border border-brand-border">
+      <div class="reveal flex flex-col overflow-hidden rounded-2xl border border-brand-muted/30">
         <!-- Placeholder -->
         <div id="map-placeholder" class="flex flex-1 min-h-[480px] items-center justify-center bg-brand-surface p-8 text-center">
           <div>
-            <svg class="mx-auto h-12 w-12 text-brand-latte" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <svg class="mx-auto h-12 w-12 text-brand-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
             </svg>
-            <h3 class="mt-4 font-heading text-lg font-semibold text-brand-heading">Karte laden</h3>
+            <h3 class="mt-4 font-heading text-lg font-semibold text-brand-text">Karte laden</h3>
             <p class="mt-2 text-sm text-brand-muted">
               Mit dem Laden der Karte akzeptierst du die
               <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-brand-sage">Datenschutzerklärung von Google</a>.
             </p>
-            <button id="map-consent-btn" aria-label="Google Maps laden – dabei werden Daten an Google übertragen" class="mt-6 inline-flex h-12 items-center rounded-full bg-brand-sage px-8 text-sm font-semibold text-white transition-all hover:bg-brand-sage-dark hover:shadow-lg hover:shadow-brand-sage/20">
+            <button id="map-consent-btn" aria-label="Google Maps laden – dabei werden Daten an Google übertragen" class="mt-6 inline-flex h-12 items-center rounded-full bg-brand-sage px-8 text-sm font-semibold text-white transition-all hover:brightness-90 hover:shadow-lg hover:shadow-brand-sage/20">
               Google Maps laden
             </button>
             <p class="mt-4 text-sm text-brand-muted">{brand.address}</p>
