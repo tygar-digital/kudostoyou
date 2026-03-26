@@ -1,0 +1,17 @@
+---
+---
+
+<div id="draft-banner" class="fixed top-0 left-0 right-0 z-[60] bg-brand-espresso/95 backdrop-blur-sm text-brand-cream/80 text-center text-xs py-1.5 px-4">
+  Dies ist ein Designentwurf von <a href="https://tygar.de" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-white transition-colors">Tygar</a> – keine offizielle Website von kudos to you.
+</div>
+
+<script>
+  function setBannerOffset() {
+    const banner = document.getElementById('draft-banner');
+    if (banner) {
+      document.documentElement.style.setProperty('--banner-h', banner.offsetHeight + 'px');
+    }
+  }
+  setBannerOffset();
+  window.addEventListener('resize', setBannerOffset);
+</script>
