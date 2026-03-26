@@ -8,9 +8,12 @@
 <script>
   function setBannerOffset() {
     const banner = document.getElementById('draft-banner');
-    if (banner) {
-      document.documentElement.style.setProperty('--banner-h', banner.offsetHeight + 'px');
-    }
+    const nav = document.getElementById('nav');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const h = banner ? banner.offsetHeight : 0;
+    document.documentElement.style.setProperty('--banner-h', h + 'px');
+    if (nav) nav.style.top = h + 'px';
+    if (mobileMenu) mobileMenu.style.top = (72 + h) + 'px';
   }
   setBannerOffset();
   window.addEventListener('resize', setBannerOffset);
