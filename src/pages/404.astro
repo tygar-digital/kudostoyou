@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+import { cupPerson } from '../components/Sketches.astro'
+import content from '../data/content.json'
+const { brand } = content
+---
+
+<Base title={`Seite nicht gefunden – ${brand.name}`} description="Diese Seite existiert leider nicht.">
+  <Nav />
+  <main class="relative overflow-hidden bg-brand-cream pt-32 pb-(--spacing-section)">
+    <div class="paper-texture absolute inset-0"></div>
+    <div class="grain absolute inset-0"></div>
+
+    <div class="relative z-10 mx-auto max-w-3xl px-6 text-center">
+      <div class="mx-auto mb-8 w-28 opacity-60 sm:w-36" set:html={cupPerson} />
+
+      <h1 class="font-heading text-7xl font-bold text-brand-text sm:text-8xl lg:text-9xl">404</h1>
+      <p class="mt-4 font-accent text-xl text-brand-sage sm:text-2xl">Hier gibt's leider keinen Kaffee.</p>
+
+      <!-- Hand-drawn divider -->
+      <svg class="mx-auto mt-8 h-[2px] w-48" viewBox="0 0 200 3" fill="none" preserveAspectRatio="none">
+        <path d="M0 1.5 C35 0.5, 70 2.5, 100 1 C130 -0.5, 165 2.5, 200 1.5" stroke="#3C2415" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/>
+      </svg>
+
+      <p class="mt-8 text-base leading-relaxed text-brand-muted sm:text-lg">
+        Die Seite, die du suchst, existiert nicht — vielleicht ein Tippfehler?<br class="hidden sm:block" />
+        Aber guter Kaffee wartet auf der Startseite.
+      </p>
+
+      <a
+        href="/"
+        class="group mt-8 inline-flex h-13 items-center gap-2 rounded-full bg-brand-sage px-8 text-base font-semibold text-white transition-all duration-300 hover:brightness-90 hover:shadow-lg hover:shadow-brand-sage/20"
+      >
+        Zurück zur Startseite
+        <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </main>
+  <Footer />
+</Base>
