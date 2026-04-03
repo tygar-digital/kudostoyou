@@ -4,7 +4,6 @@
     "offen": [
       "brand.email → Echte E-Mail-Adresse des Cafés eintragen",
       "brand.phone → Echte Telefonnummer eintragen",
-      "menu.categories[*].items[*].price → Echte Preise beim Kunden erfragen",
       "contact.hours → Echte Öffnungszeiten beim Kunden bestätigen",
       "contact.mapEmbed → Korrekte Google Maps Embed-URL für Colmantstraße 5 generieren",
       "instagram.posts → Echte Instagram Post-IDs eintragen (siehe postsNote)",
@@ -83,33 +82,33 @@
       {
         "name": "Kaffee",
         "items": [
-          { "name": "Espresso", "price": "2,80 €", "description": "Kräftig und aromatisch" },
-          { "name": "Flat White", "price": "4,20 €", "description": "Samtiger Milchschaum, doppelter Espresso" },
-          { "name": "Cappuccino", "price": "3,80 €", "description": "Klassisch mit feinem Schaum" },
-          { "name": "Filter Coffee", "price": "3,50 €", "description": "Handgebrüht, wechselnde Röstung" },
-          { "name": "Cold Brew", "price": "4,50 €", "description": "12h kalt extrahiert, erfrischend" }
+          { "name": "Espresso", "description": "Kräftig und aromatisch" },
+          { "name": "Flat White", "description": "Samtiger Milchschaum, doppelter Espresso" },
+          { "name": "Cappuccino", "description": "Klassisch mit feinem Schaum" },
+          { "name": "Filter Coffee", "description": "Handgebrüht, wechselnde Röstung" },
+          { "name": "Cold Brew", "description": "12h kalt extrahiert, erfrischend" }
         ]
       },
       {
         "name": "Getränke",
         "items": [
-          { "name": "Matcha Latte", "price": "4,50 €", "description": "Japanischer Matcha mit Hafermilch" },
-          { "name": "Chai Latte", "price": "4,00 €", "description": "Würzig-warm, hausgemacht" },
-          { "name": "Limonade", "price": "3,50 €", "description": "Frisch gepresst, saisonal" },
-          { "name": "Wasser (still/sprudel)", "price": "2,50 €", "description": "" }
+          { "name": "Matcha Latte", "description": "Japanischer Matcha mit Hafermilch" },
+          { "name": "Chai Latte", "description": "Würzig-warm, hausgemacht" },
+          { "name": "Limonade", "description": "Frisch gepresst, saisonal" },
+          { "name": "Wasser (still/sprudel)", "description": "" }
         ]
       },
       {
         "name": "Snacks",
         "items": [
-          { "name": "Banana Bread", "price": "3,50 €", "description": "Hausgemacht, saftig" },
-          { "name": "Granola Bowl", "price": "6,50 €", "description": "Mit saisonalem Obst und Joghurt" },
-          { "name": "Avocado Toast", "price": "7,50 €", "description": "Sauerteigbrot, Avocado, Toppings" },
-          { "name": "Cookie", "price": "2,80 €", "description": "Chocolate Chip, frisch gebacken" }
+          { "name": "Banana Bread", "description": "Hausgemacht, saftig" },
+          { "name": "Granola Bowl", "description": "Mit saisonalem Obst und Joghurt" },
+          { "name": "Avocado Toast", "description": "Sauerteigbrot, Avocado, Toppings" },
+          { "name": "Cookie", "description": "Chocolate Chip, frisch gebacken" }
         ]
       }
     ],
-    "note": "Alle Milchgetränke auch mit Hafermilch, Sojamilch oder Mandelmilch verfügbar. Preise sind Platzhalter."
+    "note": "Alle Milchgetränke auch mit Hafermilch, Sojamilch oder Mandelmilch verfügbar."
   },
   "events": {
     "sectionLabel": "Events & Community",

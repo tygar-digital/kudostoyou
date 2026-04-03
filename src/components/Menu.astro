@@ -67,15 +67,9 @@ const { menu } = content
           <ul class="mt-6 flex flex-col gap-5">
             {category.items.map((item) => (
               <li class="group/item">
-                <div class="flex items-baseline justify-between gap-3">
-                  <span class="font-medium text-brand-cream/90 transition-colors group-hover/item:text-white">
-                    {item.name}
-                  </span>
-                  <span class="flex-1 border-b border-dotted border-brand-muted/20"></span>
-                  <span class="shrink-0 font-heading text-sm font-semibold text-brand-sage">
-                    {item.price}
-                  </span>
-                </div>
+                <span class="font-medium text-brand-cream/90 transition-colors group-hover/item:text-white">
+                  {item.name}
+                </span>
                 {item.description && (
                   <p class="mt-1 text-sm text-brand-muted/60">{item.description}</p>
                 )}
