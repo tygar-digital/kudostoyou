@@ -5,7 +5,9 @@
       "name": "dev",
       "runtimeExecutable": "/usr/local/bin/node",
       "runtimeArgs": ["node_modules/.bin/astro", "dev", "--port", "4325"],
-      "port": 4325
+      "port": 4325,
+      "readyPattern": "localhost",
+      "readyTimeout": 120000
     }
   ]
 }

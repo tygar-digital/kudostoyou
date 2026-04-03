@@ -1,63 +1,35 @@
 ---
 /**
- * MarqueeTicker — Infinite scrolling hand-drawn icons strip.
- * Pure CSS animation, edge fade gradients, pauses on hover.
+ * SocialStrip — Static bar with Instagram + Strava links.
+ * Dark espresso background, clean and direct.
  */
-
-const icons = [
-  // Coffee cup
-  `<svg viewBox="0 0 48 48" fill="none" class="h-7 w-7 sm:h-8 sm:w-8"><path d="M10 14c-1-2 30-3 28 0l-4 22c-1 4-19 5-20 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7 14c-1-2 35-3 34 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M38 18c4 0 7 2 6 7s-5 6-8 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M20 6c-1-4 3-6 2-2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/><path d="M28 5c-1-5 3-6 2-2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/></svg>`,
-  // Croissant
-  `<svg viewBox="0 0 48 48" fill="none" class="h-7 w-7 sm:h-8 sm:w-8"><path d="M8 32c2-8 8-18 16-20s14 4 16 12c1 4-2 6-6 5-3-1-5-4-8-3s-5 5-8 6c-4 1-7-1-6-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 26c2-4 6-10 10-10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/><path d="M20 28c2-4 5-8 8-8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/></svg>`,
-  // Bicycle
-  `<svg viewBox="0 0 56 48" fill="none" class="h-7 w-7 sm:h-8 sm:w-8"><circle cx="14" cy="32" r="9" stroke="currentColor" stroke-width="1.8"/><circle cx="42" cy="32" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M14 32l8-16h10l4 8-6 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 16l20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M19 14h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
-  // Coffee bean
-  `<svg viewBox="0 0 40 48" fill="none" class="h-6 w-6 sm:h-7 sm:w-7"><path d="M20 4c10-1 18 8 16 20S24 44 16 44 2 36 4 24 10 5 20 4z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 16c2 4 4 8 4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/></svg>`,
-  // Heart
-  `<svg viewBox="0 0 48 48" fill="none" class="h-6 w-6 sm:h-7 sm:w-7"><path d="M24 42C20 36 4 28 3 18 2 8 10 2 17 4c5 1 7 6 7 6s2-5 7-6c7-2 15 4 14 14-1 10-17 18-21 24z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
-  // Leaf/plant
-  `<svg viewBox="0 0 40 48" fill="none" class="h-6 w-6 sm:h-7 sm:w-7"><path d="M20 44c0-14 2-24 14-32" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M34 12C26 14 18 22 20 36" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M20 44c0-12-4-22-14-30" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 14c8 2 14 10 14 22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
-  // Steam/aroma
-  `<svg viewBox="0 0 36 48" fill="none" class="h-6 w-6 sm:h-7 sm:w-7"><path d="M10 40c0-8 6-10 6-18s-6-10-6-18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/><path d="M18 40c0-8 6-10 6-18s-6-10-6-18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/><path d="M26 40c0-8 6-10 6-18s-6-10-6-18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/></svg>`,
-  // Wheel/gear
-  `<svg viewBox="0 0 48 48" fill="none" class="h-7 w-7 sm:h-8 sm:w-8"><circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="1.8"/><circle cx="24" cy="24" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M24 10v4M24 34v4M10 24h4M34 24h4M14 14l3 3M31 31l3 3M34 14l-3 3M14 34l-3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/></svg>`,
-]
 ---
 
-<div class="relative overflow-hidden bg-brand-espresso py-5 select-none" aria-hidden="true">
-  <!-- Edge fade gradients -->
-  <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-brand-espresso to-transparent"></div>
-  <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-brand-espresso to-transparent"></div>
+<div class="bg-brand-espresso py-4">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-6 px-6 sm:gap-10">
+    <!-- Instagram -->
+    <a
+      href="https://www.instagram.com/kudostoyou.cc/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group flex items-center gap-2.5 text-sm font-medium text-brand-cream/70 transition-colors hover:text-white sm:text-base"
+    >
+      <svg class="h-4.5 w-4.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      <span class="underline decoration-brand-cream/30 underline-offset-4 transition-all group-hover:decoration-white">@kudostoyou.cc</span>
+    </a>
 
-  <div class="marquee-track flex text-brand-cream/50">
-    {[0, 1].map(() => (
-      <div class="flex shrink-0 items-center">
-        {icons.map(icon => (
-          <span class="flex shrink-0 items-center px-7 sm:px-10" set:html={icon} />
-        ))}
-      </div>
-    ))}
+    <!-- Separator -->
+    <span class="text-brand-cream/20">●</span>
+
+    <!-- Strava Cycling Club -->
+    <a
+      href="https://www.strava.com/clubs/kudostoyou"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group flex items-center gap-2.5 text-sm font-medium text-brand-cream/70 transition-colors hover:text-white sm:text-base"
+    >
+      <svg class="h-4.5 w-4.5" fill="currentColor" viewBox="0 0 24 24"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+      <span class="underline decoration-brand-cream/30 underline-offset-4 transition-all group-hover:decoration-white">Strava Cycling Club</span>
+    </a>
   </div>
 </div>
-
-<style>
-  .marquee-track {
-    animation: marquee 30s linear infinite;
-    width: max-content;
-  }
-
-  .marquee-track:hover {
-    animation-play-state: paused;
-  }
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation: none;
-    }
-  }
-</style>

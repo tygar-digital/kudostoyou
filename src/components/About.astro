@@ -1,16 +1,14 @@
 ---
 import content from '../data/content.json'
-import { coffeeCup, bicycle, chair, sparkle, coffeeBean, sketchyHeart } from './Sketches.astro'
+import { sparkle, sketchyHeart } from './Sketches.astro'
 const { about } = content
-
-const featureIllustrations = [coffeeCup, bicycle, chair]
 ---
 
 <section id="about" class="relative overflow-hidden bg-brand-cream">
   <div class="paper-texture absolute inset-0"></div>
 
-  <!-- Single subtle sketch accent -->
-  <div class="absolute right-[4%] top-[8%] w-7 opacity-10 rotate-12 hidden lg:block" set:html={sparkle} />
+  <!-- Subtle sketch accents -->
+  <div class="absolute right-[4%] top-[8%] w-7 opacity-[0.15] rotate-12 hidden lg:block" set:html={sparkle} />
 
   <div class="relative z-10 mx-auto max-w-7xl px-6 py-(--spacing-section)">
     <!-- Section label -->
@@ -21,15 +19,15 @@ const featureIllustrations = [coffeeCup, bicycle, chair]
       </p>
     </div>
 
-    <!-- Sticky image + scrolling text -->
-    <div class="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
-      <!-- Image column — fills full height on desktop -->
+    <!-- Image + text -->
+    <div class="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-end lg:gap-20">
+      <!-- Image column -->
       <div class="reveal min-w-0">
-        <div class="photo-grain overflow-hidden rounded-2xl shadow-xl lg:h-full">
+        <div class="photo-grain overflow-hidden rounded-2xl shadow-xl">
           <img
             src="/images/aufsteller-logo.webp"
             alt="kudos to you Aufsteller im Abendlicht mit Herzlogo und Slogan"
-            class="aspect-[4/3] w-full object-cover sm:aspect-[3/4] lg:aspect-auto lg:h-full"
+            class="aspect-[4/3] w-full object-cover sm:aspect-[3/4]"
             loading="lazy"
             width="1000"
             height="1333"
@@ -40,23 +38,19 @@ const featureIllustrations = [coffeeCup, bicycle, chair]
         </p>
       </div>
 
-      <!-- Scrolling text panels -->
+      <!-- Text column — bolder typography, no cards -->
       <div>
-        <!-- Panel 1: Headline + intro -->
         <div class="reveal">
-          <h2 class="font-heading text-4xl font-bold leading-tight text-brand-text sm:text-5xl lg:text-6xl">
+          <h2 class="font-heading text-4xl font-bold leading-[0.95] text-brand-text sm:text-5xl lg:text-6xl xl:text-7xl">
             {about.headline}
           </h2>
-          <p class="mt-8 text-lg leading-relaxed text-brand-text">
+          <p class="mt-8 text-lg leading-relaxed text-brand-text sm:text-xl">
             {about.text}
-          </p>
-          <p class="mt-4 font-accent text-xl text-brand-sage">
-            {about.text2}
           </p>
         </div>
 
         <!-- Hand-drawn sage divider + heart -->
-        <div class="my-12 flex items-center gap-4">
+        <div class="reveal my-10 flex items-center gap-4">
           <svg class="h-[2px] flex-1 opacity-20" viewBox="0 0 400 2" fill="none" preserveAspectRatio="none">
             <path d="M0 1 C60 0.3, 120 1.8, 200 0.8 C280 -0.2, 340 1.6, 400 1" stroke="#6B4226" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
@@ -66,20 +60,11 @@ const featureIllustrations = [coffeeCup, bicycle, chair]
           </svg>
         </div>
 
-        <!-- Panel 2: Feature cards (stacked for sticky scroll effect) -->
-        <div class="reveal-stagger space-y-6">
-          {about.features.map((feature, i) => (
-            <div class="reveal sketch-wobble group relative overflow-hidden rounded-2xl border border-brand-muted/30 bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
-              <div class="absolute inset-x-0 top-0 h-[2px] bg-brand-sage opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-              <div class="flex items-start gap-5">
-                <div class="w-12 shrink-0 opacity-50 transition-opacity duration-300 group-hover:opacity-80" set:html={featureIllustrations[i]} />
-                <div>
-                  <h3 class="font-heading text-lg font-semibold text-brand-text">{feature.title}</h3>
-                  <p class="mt-2 text-sm leading-relaxed text-brand-muted">{feature.description}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+        <!-- Second text block — Caveat handwriting accent -->
+        <div class="reveal">
+          <p class="font-accent text-2xl leading-relaxed text-brand-sage sm:text-3xl">
+            {about.text2}
+          </p>
         </div>
       </div>
     </div>

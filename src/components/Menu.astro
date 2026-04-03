@@ -5,14 +5,14 @@ import LatteArtSVG from './LatteArtSVG.astro'
 const { menu } = content
 ---
 
-<section id="menu" class="relative overflow-hidden bg-brand-espresso pb-(--spacing-section) pt-12 lg:pt-16">
+<section id="menu" class="relative overflow-hidden bg-brand-espresso py-(--spacing-section)">
   <div class="grain absolute inset-0 opacity-30"></div>
 
   <!-- Single subtle sketch accent -->
   <div class="sketch-invert absolute right-[5%] bottom-[8%] w-10 opacity-[0.04] rotate-20" set:html={coffeeBean} />
 
   <!-- Decorative latte art at top of section -->
-  <div class="relative z-10">
+  <div class="relative z-10 -mt-12 mb-6 lg:-mt-16 lg:mb-8">
     <LatteArtSVG />
   </div>
 
@@ -53,10 +53,10 @@ const { menu } = content
     <div class="reveal-stagger mt-14 grid gap-10 md:grid-cols-3">
       {menu.categories.map((category, ci) => (
         <div class="reveal">
-          <span class="font-heading text-sm font-bold uppercase tracking-[0.15em] text-brand-sage/60">
+          <span class="font-heading text-6xl font-bold leading-none text-brand-sage/20 sm:text-7xl lg:text-8xl">
                 {String(ci + 1).padStart(2, '0')}
               </span>
-              <h3 class="mt-1 font-heading text-2xl font-bold text-brand-cream">
+              <h3 class="-mt-3 font-heading text-2xl font-bold text-brand-cream sm:-mt-4 sm:text-3xl">
                 {category.name}
               </h3>
           <!-- Hand-drawn underline -->

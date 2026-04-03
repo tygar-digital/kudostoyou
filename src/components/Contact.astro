@@ -5,32 +5,29 @@ import RisingSteam from './RisingSteam.astro'
 const { contact, brand } = content
 ---
 
-<section id="contact" class="relative overflow-hidden bg-brand-cream pb-(--spacing-section) pt-10 lg:pt-14">
+<section id="contact" class="relative overflow-hidden bg-brand-cream py-(--spacing-section)">
   <div class="paper-texture absolute inset-0"></div>
 
   <!-- Decorative steam cup at top of section -->
-  <div class="relative z-10">
+  <div class="relative z-10 -mt-12 mb-6 lg:-mt-16 lg:mb-8">
     <RisingSteam />
   </div>
 
   <div class="relative z-10 mx-auto max-w-7xl px-6">
-    <!-- Section header — centered -->
-    <div class="reveal mx-auto max-w-2xl text-center">
-      <div class="mx-auto flex items-center justify-center gap-4">
-        <div class="h-[2px] w-8 bg-brand-sage"></div>
-        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sage">
-          {contact.sectionLabel}
-        </p>
-        <div class="h-[2px] w-8 bg-brand-sage"></div>
-      </div>
-      <h2 class="mt-4 font-heading text-4xl font-bold text-brand-text sm:text-5xl lg:text-6xl">
-        {contact.headline}
-      </h2>
-      <p class="mt-3 flex items-center justify-center gap-2 font-accent text-xl text-brand-sage">
-        Wir freuen uns auf dich.
-        <span class="inline-block w-6 opacity-20 rotate-6 [&_path]:!stroke-brand-sage" set:html={sketchyHeart}></span>
+    <!-- Section header -->
+    <div class="reveal flex items-center gap-4">
+      <div class="h-[2px] w-12 bg-brand-sage"></div>
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sage">
+        {contact.sectionLabel}
       </p>
     </div>
+    <h2 class="mt-6 font-heading text-4xl font-bold text-brand-text sm:text-5xl lg:text-6xl">
+      {contact.headline}
+    </h2>
+    <p class="mt-3 flex items-center gap-2 font-accent text-xl text-brand-sage">
+      Wir freuen uns auf dich.
+      <span class="inline-block w-6 opacity-20 rotate-6 [&_path]:!stroke-brand-sage" set:html={sketchyHeart}></span>
+    </p>
 
     <!-- Exterior photo — editorial with tilt -->
     <div class="reveal mt-10 overflow-hidden rounded-2xl shadow-xl transition-shadow duration-700 hover:shadow-2xl">

@@ -8,10 +8,10 @@ import About from '../components/About.astro'
 import Menu from '../components/Menu.astro'
 import Events from '../components/Events.astro'
 import PhotoScroll from '../components/PhotoScroll.astro'
-import Gallery from '../components/Gallery.astro'
 import Contact from '../components/Contact.astro'
 import Footer from '../components/Footer.astro'
 import FloatingDeko from '../components/FloatingDeko.astro'
+import SectionDivider from '../components/SectionDivider.astro'
 ---
 
 <Base>
@@ -21,13 +21,14 @@ import FloatingDeko from '../components/FloatingDeko.astro'
     <Hero />
     <MarqueeTicker />
     <About />
+    <SectionDivider variant="beans-trail" />
     <FloatingDeko zone="after-about" />
     <Menu />
     <FloatingDeko zone="after-menu" />
     <Events />
+    <SectionDivider variant="bike-path" />
+    <FloatingDeko zone="after-events" />
     <PhotoScroll />
-    <FloatingDeko zone="after-photoscroll" />
-    <Gallery />
     <FloatingDeko zone="near-contact" />
     <Contact />
   </main>

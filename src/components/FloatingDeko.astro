@@ -7,7 +7,7 @@
 import { coffeeBean, sparkle, steamWisp, tinyLeaf } from './Sketches.astro'
 
 interface Props {
-  zone: 'after-about' | 'after-menu' | 'after-photoscroll' | 'near-contact'
+  zone: 'after-about' | 'after-menu' | 'after-events' | 'near-contact'
 }
 
 const { zone } = Astro.props
@@ -41,7 +41,7 @@ const config: Record<string, {
     animation: 'float-drift-b',
     duration: '28s',
   },
-  'after-photoscroll': {
+  'after-events': {
     sketch: 'sparkle',
     position: 'right-[6%] -top-10',
     size: 'w-5',

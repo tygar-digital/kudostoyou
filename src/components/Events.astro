@@ -1,58 +1,92 @@
 ---
 import content from '../data/content.json'
-import { bicycle, sparkle, coffeeBean } from './Sketches.astro'
+import { bicycle, sparkle } from './Sketches.astro'
 const { events } = content
+
+const featured = events.items[0]
+const rest = events.items.slice(1)
 ---
 
 <section id="events" class="relative overflow-hidden bg-brand-cream py-(--spacing-section)">
   <div class="grain absolute inset-0 opacity-50"></div>
   <div class="paper-texture absolute inset-0"></div>
 
-  <!-- Single subtle sketch accent -->
+  <!-- Subtle bicycle sketch -->
   <div class="absolute right-[2%] top-[4%] w-36 opacity-[0.04] rotate-6 hidden lg:block" set:html={bicycle} />
 
   <div class="relative z-10 mx-auto max-w-7xl px-6">
-    <!-- Section header — centered -->
-    <div class="reveal mx-auto max-w-2xl text-center">
-      <div class="mx-auto flex items-center justify-center gap-4">
-        <div class="h-[2px] w-8 bg-brand-sage"></div>
-        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sage">
-          {events.sectionLabel}
-        </p>
-        <div class="h-[2px] w-8 bg-brand-sage"></div>
-      </div>
-      <h2 class="mt-4 font-heading text-4xl font-bold text-brand-text sm:text-5xl">
-        {events.headline}
-      </h2>
-      <p class="mt-4 text-lg text-brand-text">
-        {events.description}
+    <!-- Section header -->
+    <div class="reveal flex items-center gap-4">
+      <div class="h-[2px] w-12 bg-brand-sage"></div>
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sage">
+        {events.sectionLabel}
       </p>
     </div>
+    <h2 class="mt-6 font-heading text-4xl font-bold text-brand-text sm:text-5xl lg:text-6xl">
+      {events.headline}
+    </h2>
 
-    <!-- Event cards — staggered -->
-    <div class="reveal-stagger mt-12 grid gap-6 md:grid-cols-3">
-      {events.items.map((event, i) => (
-        <div
-          class:list={[
-            "reveal sketch-wobble group relative overflow-hidden rounded-2xl border border-brand-muted/30 bg-brand-surface p-8 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-xl hover:shadow-brand-sage/5",
-            i === 1 && "md:translate-y-8"
-          ]}
-        >
-          <span class="inline-flex rounded-full bg-brand-sage/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-sage">
-            {event.tag}
+    <!-- Featured Event -->
+    <div class="reveal mt-14 overflow-hidden rounded-2xl border border-brand-muted/20 bg-brand-espresso p-7 sm:p-10 lg:p-12">
+      <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <!-- Left: Big date + title -->
+        <div class="max-w-xl">
+          <span class="inline-flex rounded-full bg-brand-sage/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-sage">
+            {featured.tag}
           </span>
 
-          <h3 class="mt-5 font-heading text-xl font-bold text-brand-text">
-            {event.title}
+          <!-- Time display -->
+          <p class="mt-4 font-heading text-4xl font-bold leading-[0.85] text-brand-cream/10 sm:text-5xl lg:text-6xl">
+            09:00
+          </p>
+
+          <h3 class="-mt-2 font-heading text-3xl font-bold text-brand-cream sm:-mt-3 sm:text-4xl lg:text-5xl">
+            {featured.title}
           </h3>
 
-          <p class="mt-3 font-accent text-base text-brand-sage">
-            {event.date}
+          <p class="mt-3 font-accent text-xl text-brand-sage sm:text-2xl">
+            {featured.date}
           </p>
 
-          <p class="mt-4 text-sm leading-relaxed text-brand-muted">
-            {event.description}
+          <p class="mt-4 text-base leading-relaxed text-brand-cream/70 sm:text-lg">
+            {featured.description}
           </p>
+        </div>
+
+        <!-- Right: Details -->
+        <div class="space-y-2 lg:text-right">
+          {featured.details?.map((detail) => (
+            <p class="text-sm text-brand-cream/50">{detail}</p>
+          ))}
+        </div>
+      </div>
+
+      <!-- Bicycle sketch accent -->
+      <div class="mt-8 flex justify-center lg:justify-end">
+        <div class="w-24 opacity-[0.08] text-brand-cream [&_*]:!stroke-brand-cream" set:html={bicycle} />
+      </div>
+    </div>
+
+    <!-- Other events — compact cards -->
+    <div class="reveal-stagger mt-8 grid gap-6 md:grid-cols-2">
+      {rest.map((event) => (
+        <div class="reveal group rounded-2xl border border-brand-muted/30 bg-brand-surface p-7 transition-all duration-500 hover:border-brand-sage/40 hover:shadow-lg hover:shadow-brand-sage/5">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="inline-flex rounded-full bg-brand-sage/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-sage">
+                {event.tag}
+              </span>
+              <h3 class="mt-3 font-heading text-xl font-bold text-brand-text">
+                {event.title}
+              </h3>
+              <p class="mt-2 font-accent text-base text-brand-sage">
+                {event.date}
+              </p>
+              <p class="mt-3 text-sm leading-relaxed text-brand-muted">
+                {event.description}
+              </p>
+            </div>
+          </div>
 
           <details class="mt-5">
             <summary class="flex cursor-pointer items-center gap-2 text-sm font-medium text-brand-muted transition-colors hover:text-brand-sage">
