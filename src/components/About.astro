@@ -20,14 +20,14 @@ const { about } = content
     </div>
 
     <!-- Image + text -->
-    <div class="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-end lg:gap-20">
+    <div class="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-stretch lg:gap-20">
       <!-- Image column -->
       <div class="reveal min-w-0">
         <div class="photo-grain overflow-hidden rounded-2xl shadow-xl">
           <img
             src="/images/aufsteller-logo.webp"
             alt="kudos to you Aufsteller im Abendlicht mit Herzlogo und Slogan"
-            class="aspect-[4/3] w-full object-cover sm:aspect-[3/4]"
+            class="aspect-[4/3] w-full object-cover sm:aspect-[3/4] lg:aspect-[15/16]"
             loading="lazy"
             width="1000"
             height="1333"
@@ -39,7 +39,7 @@ const { about } = content
       </div>
 
       <!-- Text column — bolder typography, no cards -->
-      <div>
+      <div class="flex flex-col justify-between">
         <div class="reveal">
           <h2 class="font-heading text-4xl font-bold leading-[0.95] text-brand-text sm:text-5xl lg:text-6xl xl:text-7xl">
             {about.headline}
